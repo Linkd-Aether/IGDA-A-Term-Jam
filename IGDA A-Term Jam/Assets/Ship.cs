@@ -14,7 +14,7 @@ public class Ship : MonoBehaviour
     private float sailHeight; //value between 0 (fully lowered) and 1 (fully raised)
     private float waterLevel; //value between 0 (no water) and 1 (sunk)
     private float steeringAmount; //value between -1 and 1 used for player input
-    private float accelerationPower = 3f; //Ships accelertaion ability (higher means more rapid acceleration)
+    private float accelerationPower = 0.5f; //Ships accelertaion ability (higher means more rapid acceleration)
     private float steeringPower = 1f; //Ships turning ability (higher means capable of sharper turns)
 
     public List<Sprite> hullModels;
@@ -78,6 +78,8 @@ public class Ship : MonoBehaviour
     public void SetSailHeight(float value) {
         sailHeight = value;
         Mathf.Clamp(sailHeight, 0f, 1f);
+
+        sailModel.transform.localScale = new Vector2(1f, 0.9f - sailHeight);
 
         speed = (1f - sailHeight) * accelerationPower;
     }
