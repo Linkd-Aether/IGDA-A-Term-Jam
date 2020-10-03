@@ -33,7 +33,6 @@ public class Sail : MonoBehaviour
     private void IncrementSailHeight(float increment) {
         sailHeight += increment;
         sailHeight = Mathf.Clamp(sailHeight, 0, 1);
-        Debug.Log(sailHeight);
         UpdateSailDisplay();
     }
 
