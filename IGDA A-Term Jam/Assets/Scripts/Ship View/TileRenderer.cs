@@ -5,11 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(Grid))]
 public class TileRenderer : MonoBehaviour
 {
-    public float oceanSpeed = 1.2f;
+    private float oceanSpeed = Constants.oceanSpd;
     
-    private GameObject oceanPrefab;
+    private static GameObject oceanPrefab;
     private List<GameObject> oceanRows = new List<GameObject>();
-    private int ROW_COUNT = 11;
+    private int ROW_COUNT = 10;
 
     void Start()
     {
@@ -27,7 +27,7 @@ public class TileRenderer : MonoBehaviour
         for (int i = 0; i < ROW_COUNT; i++)
         {
             GameObject row = Instantiate(oceanPrefab, this.transform);
-            row.transform.position = new Vector3(i, -i, 0);
+            row.transform.position = new Vector3(0, -i*Mathf.Sqrt(2), 0);
             oceanRows.Add(row);
         }
     }
@@ -37,17 +37,12 @@ public class TileRenderer : MonoBehaviour
         for (int i = 0; i < rows.Count; i++)
         {
             GameObject row = oceanRows[i];
-            Vector3 pos = row.transform.position;
-            pos.x += oceanSpeed * Time.deltaTime;
-            pos.y -= oceanSpeed * Time.deltaTime;
-            row.transform.position = pos;
 
-            if (pos.y <= -ROW_COUNT)
+            if (Utils.DownwardMovement(row, Constants.oceanSpd))
             {
-                float overhang = Mathf.Min(0, pos.y + ROW_COUNT);
-                oceanRows[i] = (Instantiate(oceanPrefab, this.transform));
-                oceanRows[i].transform.position = new Vector3(overhang, overhang, 0);
-                Destroy(row);
+                Vector3 pos = row.transform.position;
+                pos.y += ROW_COUNT * Mathf.Sqrt(2);
+                row.transform.position = pos;
             }
         }
     }
