@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1105944631841728513}
   - component: {fileID: 951716223021892113}
-  - component: {fileID: 1115360560079487563}
   m_Layer: 0
   m_Name: Rock2
-  m_TagString: Rock
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,22 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockTypeLarge: 1
---- !u!58 &1115360560079487563
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3695349714828172742}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.2
 --- !u!1 &4103727983956304158
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,9 +55,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4133765061631188630}
   - component: {fileID: 2401858573436570560}
+  - component: {fileID: 3789893746385461765}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,3 +127,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &3789893746385461765
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4103727983956304158}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 973ac0ff5f6bef545b71719dfd5f1334, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2

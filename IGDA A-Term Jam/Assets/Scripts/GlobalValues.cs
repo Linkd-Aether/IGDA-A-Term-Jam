@@ -11,6 +11,7 @@ public static class GlobalValues
     public static float health = 100f; // Health between 0 (dead) and 100 (no damage)
     public static float waterLevel = 0f; // Water between 0 (no water) and 100 (flooded)
     public static float sailHeight = 0f; // Sail height between 0 (fully lowered) and 1 (fully raised)
+    public static float leakRate = 0f; // Rate at which water floods the below decks per second between 0 (no leak) and 10 (heavy leak)
 
     // Sets ship health and updates ship damage model (value 0 - 100 here 0 is worst condition and 100 is best)
     public static void SetHealth(int value) {
@@ -19,7 +20,7 @@ public static class GlobalValues
     }
 
     // Increments ship health by given increment and updates ship damage model
-    public static void IncrementHealth(int increment) {
+    public static void IncrementHealth(float increment) {
         health = Mathf.Clamp(health += increment, 0, 100);
         ship.UpdateShipDamageModel(health);
     }
@@ -48,6 +49,12 @@ public static class GlobalValues
         sailHeight = Mathf.Clamp(sailHeight, 0, 1);
         sail.UpdateSailDisplay();
         ship.UpdateShipSail();
+    }
+
+    // Increments the ships sail height based on given value, updates saild displays
+    public static void IncrementLeakRate(float increment) {
+        leakRate += increment;
+        leakRate = Mathf.Clamp(leakRate, 0, 10f);
     }
 
 }

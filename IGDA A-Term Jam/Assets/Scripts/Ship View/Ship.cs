@@ -72,6 +72,7 @@ public class Ship : MonoBehaviour
             hullModel.sprite = hullModels[3];
             sailModel.sprite = sailModels[3];
         }
+        GlobalValues.sail.UpdateSailDisplay();
     }
 
     // Updates the ship speed and sail display based off globally set sail height
@@ -95,14 +96,33 @@ public class Ship : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.gameObject.tag == "Wave")
         {
-            //fill boat with water dependent on speed
+            // fill boat with water dependent on speed
+            float relativeSpd = (rb.velocity - Vector2.down * oceanForceMultiplier * oceanForceMultiplier).magnitude;
+            GlobalValues.deck.SetFloodAmount(relativeSpd * Constants.waveFloodMultiplier);
+
             // play splash SE
-        } else if (collider.gameObject.tag == "Rock")
-        {
-            // screen shake
-            // damage relative to speed of the boat when crash occurs
-            // boat fills with water
-            // crash SE
+            //!!!
         }
     }
+
+    void OnCollisionEnter2D(Collision2D collider){
+        if (collider.gameObject.tag == "Rock"){
+            float impulse = Mathf.Clamp(Vector2.Dot(collider.contacts[0].normal, collider.relativeVelocity) * rb.mass, 0, 1);
+
+            // Deal damage relative to impulse of collision, rock size, and multiplier
+            float healthLoss = impulse * collider.transform.localScale.x * Constants.rockDmgMultiplier;
+            GlobalValues.IncrementHealth(-healthLoss);
+
+            // Leak rate increments relative to impulse of collision
+            float leakage = impulse * collider.transform.localScale.x * Constants.rockLeakMultiplier;
+            leakage = (GlobalValues.sailHeight + .25f) * leakage;
+            GlobalValues.IncrementLeakRate(leakage);
+
+            // screen shake
+            //!!!
+            // crash SE
+            //!!!
+        }
+    }
+    
 }
