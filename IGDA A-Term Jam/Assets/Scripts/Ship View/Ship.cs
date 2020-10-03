@@ -8,18 +8,19 @@ using UnityEngine.UI;
 public class Ship : MonoBehaviour
 {
     private float speed;
-    private int hullHealth; //Value between 0 (dead) and 3 (full health)
+    private float hullHealth; //Value between 0 (dead) and 100 (full health)
     //private float wheelPosition; //value between -540 and +540   (allows for 3 full turns)
     private float sailHeight; //value between 0 (fully lowered) and 1 (fully raised)
     private float waterLevel; //value between 0 (no water) and 1 (sunk)
     private float steeringAmount; //value between -1 and 1 used for player input
-    private float accelerationPower = 0.5f; //Ships accelertaion ability (higher means more rapid acceleration)
+    private float accelerationPower = 0.5f; //Ships acceleration ability (higher means more rapid acceleration)
     private float steeringPower = 1f; //Ships turning ability (higher means capable of sharper turns)
-    private float waveDownwardForceMultiplier = 0.4f; //accelerationPower is multiplied by this constant to give a continuous downward force 
-                                                      //applied by the waves on the ship
+    private float oceanForceMultiplier = 0.4f; //accelerationPower is multiplied by this constant to give a continuous downward force 
+                                                      //applied by the ocean's minor waves on the ship
+    private float waveForceMultiplier = 0.5f; //dictates force of larger waves pushing ship down
 
-    public List<Sprite> hullModels;
-    public List<Sprite> sailModels;
+    private static Sprite[] hullModels;
+    private static Sprite[] sailModels;
     public SpriteRenderer hullModel;
     public SpriteRenderer sailModel;
 
@@ -28,12 +29,27 @@ public class Ship : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetHealth(3); //Set health to full at start of game
-        SetSailHeight(0); //Lower sails for full speed ahead;
+        hullModels = new Sprite[4]
+        {
+            Resources.Load<Sprite>("Sprites/Objects/Ship Parts/Hulls/hullLarge (1)"), // no damage
+            Resources.Load<Sprite>("Sprites/Objects/Ship Parts/Hulls/hullLarge (2)"), // partly damaged
+            Resources.Load<Sprite>("Sprites/Objects/Ship Parts/Hulls/hullLarge (3)"), // mostly damaged
+            Resources.Load<Sprite>("Sprites/Objects/Ship Parts/Hulls/hullLarge (4)") // destroyed
+        };
+        sailModels = new Sprite[4]
+        {
+            Resources.Load<Sprite>("Assets/Resources/Sprites/Objects/Ship Parts/Sails/sailLarge (2)"), // no damage
+            Resources.Load<Sprite>("Assets/Resources/Sprites/Objects/Ship Parts/Sails/sailLarge (8)"), // partly damaged
+            Resources.Load<Sprite>("Assets/Resources/Sprites/Objects/Ship Parts/Sails/sailLarge (14)"), // mostly damaged
+            Resources.Load<Sprite>("Assets/Resources/Sprites/Objects/Ship Parts/Sails/sailLarge (20)") // destroyed
+        };
+
+        SetHealth(100); //Set health to full at start of game
+        SetSailHeight(0); //Lower sails for full speed ahead
     }
 
 
-    //Update used for physics calculations as it is independent of frame rate
+    // Update used for physics calculations as it is independent of frame rate
     void FixedUpdate() {
         SetSteeringAmount(-Input.GetAxis("Horizontal")); //Left and right player input
 
@@ -41,30 +57,45 @@ public class Ship : MonoBehaviour
 
         rb.AddRelativeForce(Vector2.up * speed);
 
-        rb.AddForce(new Vector2(0f, -accelerationPower*waveDownwardForceMultiplier)); //Constant force applied by waves
+        rb.AddForce(new Vector2(0f, -accelerationPower*oceanForceMultiplier)); //Constant force applied by waves
 
         rb.AddRelativeForce(-Vector2.right * rb.velocity.magnitude * steeringAmount / 2);
-
     }
 
 
-    //Sets ship health and updates ship damage model (value 0 - 3 where 0 is worst condition and 3 is best)
+    // Sets ship health and updates ship damage model (value 0 - 100 here 0 is worst condition and 100 is best)
     public void SetHealth(int value) {
-        hullHealth = Mathf.Clamp(value, 0, 3);
+        hullHealth = Mathf.Clamp(value, 0, 100);
         UpdateShipDamageModel();
     }
 
-    //Increments ship health by given increment and updates ship damage model
+    // Increments ship health by given increment and updates ship damage model
     public void IncrementHealth(int increment) {
-        hullHealth = Mathf.Clamp(hullHealth += increment, 0, 3);
+        hullHealth = Mathf.Clamp(hullHealth += increment, 0, 100);
         UpdateShipDamageModel();
     }
 
-
-    //updates ship model based on health and given hull and sail models
+    // Updates ship model based on health and stored hull and sail models
     private void UpdateShipDamageModel() {
-        hullModel.sprite = hullModels[hullHealth];
-        sailModel.sprite = sailModels[hullHealth];
+        if (hullHealth >= 80) {
+            hullModel.sprite = hullModels[0];
+            sailModel.sprite = sailModels[0];
+        } else if (hullHealth >= 60) {
+            hullModel.sprite = hullModels[0];
+            sailModel.sprite = sailModels[1];
+        } else if (hullHealth >= 40) {
+            hullModel.sprite = hullModels[1];
+            sailModel.sprite = sailModels[1];
+        } else if (hullHealth >= 20) {
+            hullModel.sprite = hullModels[1];
+            sailModel.sprite = sailModels[2];
+        } else if (hullHealth >= 0) {
+            hullModel.sprite = hullModels[2];
+            sailModel.sprite = sailModels[2];
+        } else {
+            hullModel.sprite = hullModels[3];
+            sailModel.sprite = sailModels[3];
+        }
     }
 
     //Sets the ships sail height based on given value (range 0 - 1) where 0 is fully lowered and 1 is fully raised
@@ -90,4 +121,25 @@ public class Ship : MonoBehaviour
         return sailModel.sprite;
     }
 
+    void OnTriggerStay2D(Collider2D collider){
+        if (collider.gameObject.tag == "Wave")
+        {
+            // Hit a large wave, apply a large force downward
+            rb.AddRelativeForce(Vector2.down * waveForceMultiplier);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider){
+        if (collider.gameObject.tag == "Wave")
+        {
+            //fill boat with water dependent on speed
+            // play splash SE
+        } else if (collider.gameObject.tag == "Rock")
+        {
+            // screen shake
+            // damage relative to speed of the boat when crash occurs
+            // boat fills with water
+            // crash SE
+        }
+    }
 }

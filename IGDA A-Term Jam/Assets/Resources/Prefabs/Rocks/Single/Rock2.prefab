@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1115360560079487563}
   m_Layer: 0
   m_Name: Rock2
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +61,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.275
+  m_Radius: 0.2
 --- !u!1 &4103727983956304158
 GameObject:
   m_ObjectHideFlags: 0
