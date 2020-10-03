@@ -16,6 +16,8 @@ public class Ship : MonoBehaviour
     private float steeringAmount; //value between -1 and 1 used for player input
     private float accelerationPower = 0.5f; //Ships accelertaion ability (higher means more rapid acceleration)
     private float steeringPower = 1f; //Ships turning ability (higher means capable of sharper turns)
+    private float waveDownwardForceMultiplier = 0.4f; //accelerationPower is multiplied by this constant to give a continuous downward force 
+                                                      //applied by the waves on the ship
 
     public List<Sprite> hullModels;
     public List<Sprite> sailModels;
@@ -41,6 +43,8 @@ public class Ship : MonoBehaviour
         rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * orientation;
 
         rb.AddRelativeForce(Vector2.up * speed);
+
+        rb.AddRelativeForce(new Vector2(0f, -accelerationPower*waveDownwardForceMultiplier));
 
         rb.AddRelativeForce(-Vector2.right * rb.velocity.magnitude * steeringAmount / 2);
 
