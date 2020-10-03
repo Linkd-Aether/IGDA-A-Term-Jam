@@ -37,7 +37,6 @@ public class Ship : MonoBehaviour
     //Update used for physics calculations as it is independent of frame rate
     void FixedUpdate() {
         SetSteeringAmount(-Input.GetAxis("Horizontal")); //Left and right player input
-        SetSailHeight(Mathf.Clamp(Input.GetAxis("Vertical"), 0, 1)); //up down player input
 
         orientation = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
         rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * orientation;
@@ -53,15 +52,13 @@ public class Ship : MonoBehaviour
 
     //Sets ship health and updates ship damage model (value 0 - 3 where 0 is worst condition and 3 is best)
     public void SetHealth(int value) {
-        hullHealth = value;
-        Mathf.Clamp(hullHealth, 0, 3);
+        hullHealth = Mathf.Clamp(value, 0, 3);
         UpdateShipDamageModel();
     }
 
     //Increments ship health by given increment and updates ship damage model
     public void IncrementHealth(int increment) {
-        hullHealth += increment;
-        Mathf.Clamp(hullHealth, 0, 3);
+        hullHealth = Mathf.Clamp(hullHealth += increment, 0, 3);
         UpdateShipDamageModel();
     }
 
@@ -80,23 +77,25 @@ public class Ship : MonoBehaviour
 
     //Sets the ships sail height based on given value (range 0 - 1) where 0 is fully lowered and 1 is fully raised
     public void SetSailHeight(float value) {
-        sailHeight = value;
-        Mathf.Clamp(sailHeight, 0f, 1f);
+        sailHeight = Mathf.Clamp(value, 0f, 1f);
 
-        sailModel.transform.localScale = new Vector2(1f, 0.9f - sailHeight);
+        sailModel.transform.localScale = new Vector2(1f, 1.1f - sailHeight);
 
         speed = (1f - sailHeight) * accelerationPower;
     }
 
     //Sets the water level of ship
     public void SetWaterLevel(float value) {
-        waterLevel = value;
-        Mathf.Clamp(waterLevel, 0f, 100f);
+        waterLevel = Mathf.Clamp(value, 0f, 100f);
     }
 
     //Sets steeringAmount based on player input (value between -1 and 1)
     public void SetSteeringAmount(float amount) {
         steeringAmount = amount;
+    }
+
+    public Sprite GetCurrentSailSprite() {
+        return sailModel.sprite;
     }
 
 }
