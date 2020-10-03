@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6212522233509031951}
   - component: {fileID: 6212522233509031948}
   - component: {fileID: 1022487223426917575}
+  - component: {fileID: 2126899216671086692}
   m_Layer: 0
   m_Name: Wave
   m_TagString: Untagged
@@ -426,3 +427,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2126899216671086692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6212522233509031946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab2440380cfdea44b1d0ddaa8a42a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveSpeed: 1.2

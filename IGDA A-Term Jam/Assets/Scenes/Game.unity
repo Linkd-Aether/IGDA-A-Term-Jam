@@ -141,12 +141,12 @@ PrefabInstance:
     - target: {fileID: 5128840936900841093, guid: 7ca97938a89a9b4469653dadf6c7083e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.96
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 5128840936900841093, guid: 7ca97938a89a9b4469653dadf6c7083e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 5128840936900841093, guid: 7ca97938a89a9b4469653dadf6c7083e,
         type: 3}
@@ -479,7 +479,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.7169812, g: 0.9451513, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -569,8 +569,9 @@ GameObject:
   - component: {fileID: 1178738097}
   - component: {fileID: 1178738098}
   - component: {fileID: 1178738099}
+  - component: {fileID: 1178738100}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -615,6 +616,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oceanSpeed: 1.2
+--- !u!114 &1178738100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178738096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883f24da0f7c47a4b9080bfb24df8020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1268946189
 GameObject:
   m_ObjectHideFlags: 0
