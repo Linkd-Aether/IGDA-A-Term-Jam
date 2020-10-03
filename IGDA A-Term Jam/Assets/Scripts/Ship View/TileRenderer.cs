@@ -9,6 +9,7 @@ public class TileRenderer : MonoBehaviour
     
     private static GameObject oceanPrefab;
     private List<GameObject> oceanRows = new List<GameObject>();
+    private int ROW_COUNT = 10;
 
     void Start()
     {
@@ -23,10 +24,10 @@ public class TileRenderer : MonoBehaviour
 
     private void GenerateOcean(List<GameObject> rows)
     {
-        for (int i = 0; i < -Constants.DESPAWN_ZONE; i++)
+        for (int i = 0; i < ROW_COUNT; i++)
         {
             GameObject row = Instantiate(oceanPrefab, this.transform);
-            row.transform.position = new Vector3(i, -i, 0);
+            row.transform.position = new Vector3(0, -i*Mathf.Sqrt(2), 0);
             oceanRows.Add(row);
         }
     }
@@ -37,12 +38,11 @@ public class TileRenderer : MonoBehaviour
         {
             GameObject row = oceanRows[i];
 
-            if (Utils.DiagonalMovement(row, Constants.oceanSpd))
+            if (Utils.DownwardMovement(row, Constants.oceanSpd))
             {
-                float overhang = Mathf.Min(0, row.transform.position.y - Constants.DESPAWN_ZONE);
-                oceanRows[i] = (Instantiate(oceanPrefab, this.transform));
-                oceanRows[i].transform.position = new Vector3(overhang, overhang, 0);
-                Destroy(row);
+                Vector3 pos = row.transform.position;
+                pos.y += ROW_COUNT * Mathf.Sqrt(2);
+                row.transform.position = pos;
             }
         }
     }

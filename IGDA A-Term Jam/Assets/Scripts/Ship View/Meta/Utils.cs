@@ -4,12 +4,11 @@ using UnityEngine;
 
 public static class Utils
 {
-    // DiagonalMovement moves a GameObject diagonally for one frame at the given speed
+    // DownwardMovement moves a GameObject Down for one frame at the given speed
     // returns true if the position of the moved obj is below the specified DESPAWN_ZONE
-    public static bool DiagonalMovement(GameObject obj, float speed)
+    public static bool DownwardMovement(GameObject obj, float speed)
     {
         Vector3 pos = obj.transform.position;
-        pos.x += speed * Time.deltaTime;
         pos.y -= speed * Time.deltaTime;
         obj.transform.position = pos;
 

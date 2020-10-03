@@ -13,15 +13,15 @@ public class RockCluster : MonoBehaviour
 
     void Update()
     {
-        if (Utils.DiagonalMovement(this.gameObject, Constants.rockSpd)) Destroy(this.gameObject);
+        if (Utils.DownwardMovement(this.gameObject, Constants.rockSpd)) Destroy(this.gameObject);
     }
 
-    // Sets rock spawn position along y = x + 10 line (lines up with movement to cross screen)
+    // Sets rock spawn position above upper edge of screen
     private void SetLocation()
     {
         Vector3 pos = this.transform.position;
-        pos.x = Random.Range(-8, 0);
-        pos.y = pos.x + 10;
+        pos.x = Random.Range(-4, 4);
+        pos.y = 7;
         this.transform.position = pos;
     }
 }
