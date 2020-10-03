@@ -44,7 +44,7 @@ public class Ship : MonoBehaviour
 
         rb.AddRelativeForce(Vector2.up * speed);
 
-        rb.AddRelativeForce(new Vector2(0f, -accelerationPower*waveDownwardForceMultiplier));
+        rb.AddForce(new Vector2(0f, -accelerationPower*waveDownwardForceMultiplier)); //Constant force applied by waves
 
         rb.AddRelativeForce(-Vector2.right * rb.velocity.magnitude * steeringAmount / 2);
 
