@@ -5,11 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Grid))]
 public class TileRenderer : MonoBehaviour
 {
-    public float oceanSpeed = 1.2f;
+    private float oceanSpeed = Constants.oceanSpd;
     
-    private GameObject oceanPrefab;
+    private static GameObject oceanPrefab;
     private List<GameObject> oceanRows = new List<GameObject>();
-    private int ROW_COUNT = 11;
 
     void Start()
     {
@@ -24,7 +23,7 @@ public class TileRenderer : MonoBehaviour
 
     private void GenerateOcean(List<GameObject> rows)
     {
-        for (int i = 0; i < ROW_COUNT; i++)
+        for (int i = 0; i < -Constants.DESPAWN_ZONE; i++)
         {
             GameObject row = Instantiate(oceanPrefab, this.transform);
             row.transform.position = new Vector3(i, -i, 0);
@@ -37,14 +36,10 @@ public class TileRenderer : MonoBehaviour
         for (int i = 0; i < rows.Count; i++)
         {
             GameObject row = oceanRows[i];
-            Vector3 pos = row.transform.position;
-            pos.x += oceanSpeed * Time.deltaTime;
-            pos.y -= oceanSpeed * Time.deltaTime;
-            row.transform.position = pos;
 
-            if (pos.y <= -ROW_COUNT)
+            if (Utils.DiagonalMovement(row, Constants.oceanSpd))
             {
-                float overhang = Mathf.Min(0, pos.y + ROW_COUNT);
+                float overhang = Mathf.Min(0, row.transform.position.y - Constants.DESPAWN_ZONE);
                 oceanRows[i] = (Instantiate(oceanPrefab, this.transform));
                 oceanRows[i].transform.position = new Vector3(overhang, overhang, 0);
                 Destroy(row);
