@@ -47,16 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4d863879ef40b43844c46e475c0e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hullModels:
-  - {fileID: 21300000, guid: d15d65a39c5dc3a49bdac0ce310db348, type: 3}
-  - {fileID: 21300000, guid: 06aee44cea491404ab35fd75103c511b, type: 3}
-  - {fileID: 21300000, guid: 5828164eab5d85e46b72ce4bc12f116a, type: 3}
-  - {fileID: 21300000, guid: 8a1f4758edf6d8449ad6567026030b30, type: 3}
-  sailModels:
-  - {fileID: 21300000, guid: f6e52f7491cbfc54b99186b3d4cfabc2, type: 3}
-  - {fileID: 21300000, guid: 3945028854e371e4d8f562c32e4ed6cf, type: 3}
-  - {fileID: 21300000, guid: 41072b720ca69ea4ebe8139b52b779eb, type: 3}
-  - {fileID: 21300000, guid: 6398ebca80e8b0b409b21deed43ba17b, type: 3}
   hullModel: {fileID: 3734632832645506941}
   sailModel: {fileID: 4004614745527075035}
   rb: {fileID: 7026690555267147802}
@@ -248,7 +238,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 41072b720ca69ea4ebe8139b52b779eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 329d09801b1c5fa45a5c4709aef78e52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
