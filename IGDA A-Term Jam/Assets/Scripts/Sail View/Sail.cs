@@ -5,29 +5,25 @@ using UnityEngine.PlayerLoop;
 
 public class Sail : MonoBehaviour
 {
-    private GameObject shipObject;
     private Ship ship;
+    
     private float sailHeight = 0;
     [SerializeField] public float sailHeightIncrement = 0.01f;
     public SpriteRenderer sailSprite;
     public Transform sailTransform;
 
-    // Start is called before the first frame update
     void Start()
     {
-        shipObject = GameObject.FindGameObjectWithTag("PlayerShip");
-        ship = shipObject.GetComponent<Ship>();
+        ship = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<Ship>();
     }
 
-    private void FixedUpdate() {
-        IncrementSailHeight(Input.GetAxis("Vertical") * sailHeightIncrement);
-        
-        ship.SetSailHeight(sailHeight); //up down player input
-    }
+    private void Update() {
+        float input = Input.GetAxisRaw("Vertical");
 
-    private void SetSailHeight(float value) {
-        sailHeight = value;
-        UpdateSailDisplay();
+        if (input != 0){
+            IncrementSailHeight(input * sailHeightIncrement);
+            ship.SetSailHeight(sailHeight);
+        }
     }
 
     private void IncrementSailHeight(float increment) {
