@@ -10,7 +10,6 @@ public class Ship : MonoBehaviour
     private float speed;
     private float hullHealth; //Value between 0 (dead) and 100 (full health)
     //private float wheelPosition; //value between -540 and +540   (allows for 3 full turns)
-    private float orientation; //0 - 360 direction of ship
     private float sailHeight; //value between 0 (fully lowered) and 1 (fully raised)
     private float waterLevel; //value between 0 (no water) and 1 (sunk)
     private float steeringAmount; //value between -1 and 1 used for player input
@@ -54,8 +53,7 @@ public class Ship : MonoBehaviour
     void FixedUpdate() {
         SetSteeringAmount(-Input.GetAxis("Horizontal")); //Left and right player input
 
-        orientation = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
-        rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * orientation;
+        rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude;
 
         rb.AddRelativeForce(Vector2.up * speed);
 
@@ -98,12 +96,6 @@ public class Ship : MonoBehaviour
             hullModel.sprite = hullModels[3];
             sailModel.sprite = sailModels[3];
         }
-    }
-
-    //Sets ships orientation
-    public void SetOrientation(float value) {
-        orientation = value;
-        transform.rotation = new Quaternion(0f, 0f, orientation, 0f);
     }
 
     //Sets the ships sail height based on given value (range 0 - 1) where 0 is fully lowered and 1 is fully raised
