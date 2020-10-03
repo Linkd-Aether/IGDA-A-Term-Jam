@@ -291,7 +291,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 337772745}
   m_Father: {fileID: 498398413}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -500,12 +501,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337772743}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.06, y: -20.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.059999466, y: -0.07999992, z: 0}
   m_LocalScale: {x: 2, y: 4, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 236957741}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &375989054
 GameObject:
@@ -680,7 +681,7 @@ GameObject:
   - component: {fileID: 498398414}
   m_Layer: 0
   m_Name: BelowDeckView
-  m_TagString: Untagged
+  m_TagString: BelowDeck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -916,6 +917,12 @@ Transform:
   m_Father: {fileID: 2099367650}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &697369362 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 192158882048134311, guid: f35c87c6d98a4c445b4358775e8b7a7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 192158881559505414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &820452962
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,9 +933,10 @@ GameObject:
   m_Component:
   - component: {fileID: 820452963}
   - component: {fileID: 820452964}
+  - component: {fileID: 820452965}
   m_Layer: 0
   m_Name: Sail
-  m_TagString: Untagged
+  m_TagString: Sail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -997,6 +1005,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &820452965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820452962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0ca9248ad7c7547bd7eafdf9817f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sailHeightIncrement: 0.01
+  sailSprite: {fileID: 820452964}
+  sailTransform: {fileID: 1177025677}
 --- !u!1 &835554457
 GameObject:
   m_ObjectHideFlags: 0
@@ -6192,6 +6215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883f24da0f7c47a4b9080bfb24df8020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnTimeRock: 3.5
+  spawnTimeWave: 14
+  spawnTimeVariance: 0.5
 --- !u!1 &1236193064
 GameObject:
   m_ObjectHideFlags: 0
@@ -6239,7 +6265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &1268946191
 Camera:
   m_ObjectHideFlags: 0
@@ -6306,7 +6332,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1435474534}
-  - component: {fileID: 1435474535}
   m_Layer: 0
   m_Name: Sail View
   m_TagString: Untagged
@@ -6334,21 +6359,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1435474535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435474533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d0ca9248ad7c7547bd7eafdf9817f06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sailHeightIncrement: 0.01
-  sailSprite: {fileID: 820452964}
-  sailTransform: {fileID: 1177025677}
 --- !u!1 &1470185034
 GameObject:
   m_ObjectHideFlags: 0
@@ -6422,39 +6432,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1665636295}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1665636294
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1665636295}
-  m_Layer: 0
-  m_Name: Wheel View
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1665636295
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665636294}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 10, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1470185037}
-  - {fileID: 184604408}
-  - {fileID: 924244370}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1505259059
 GameObject:
@@ -6621,6 +6598,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9.87895, y: 0.4887886}
   m_EdgeRadius: 0
+--- !u!1 &1665636294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1665636295}
+  m_Layer: 0
+  m_Name: Wheel View
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1665636295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665636294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20, y: 10, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1470185037}
+  - {fileID: 697369362}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1673609828
 GameObject:
   m_ObjectHideFlags: 0
