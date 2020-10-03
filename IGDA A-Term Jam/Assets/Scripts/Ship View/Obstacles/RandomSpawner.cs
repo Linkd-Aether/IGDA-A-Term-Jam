@@ -5,9 +5,9 @@ using UnityEngine;
 public class RandomSpawner : MonoBehaviour
 {
     public float spawnTimeRock = 3.5f;
-    public float spawnTimeWave = 10f;
+    public float spawnTimeWave = 14f;
 
-    public float spawnTimeVariance = .3f;
+    public float spawnTimeVariance = .5f;
 
     class SpawnObject
     {
