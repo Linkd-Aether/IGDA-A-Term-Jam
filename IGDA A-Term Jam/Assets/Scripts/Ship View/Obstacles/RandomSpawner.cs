@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class RandomSpawner : MonoBehaviour
 {
+    public float spawnTimeRock = 3.5f;
+    public float spawnTimeWave = 10f;
+
+    public float spawnTimeVariance = .3f;
+
     class SpawnObject
     {
         public List<GameObject> objVariants = new List<GameObject>();
@@ -18,36 +23,31 @@ public class RandomSpawner : MonoBehaviour
         }
     }
 
-    static SpawnObject[] types = new SpawnObject[3];
+    static SpawnObject[] types = new SpawnObject[2];
 
     void Start()
     {
-        List<GameObject> singleRocks = new List<GameObject>
-        {
-            Resources.Load<GameObject>("Prefabs/Rocks/Single/Rock1"),
-            Resources.Load<GameObject>("Prefabs/Rocks/Single/Rock2")
-        };
-        types[0] = new SpawnObject(singleRocks, 5);
-
-        List<GameObject> largeRocks = new List<GameObject>
+        List<GameObject> rocks = new List<GameObject>
         {
             Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster1"),
-            Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster2")
+            Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster2"),
+            Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster3"),
+            Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster4")
         };
-        types[1] = new SpawnObject(largeRocks, 8);
+        types[0] = new SpawnObject(rocks, spawnTimeRock);
 
         List<GameObject> waves = new List<GameObject>
         {
             Resources.Load<GameObject>("Sprites/Tilesets/Prefabs/Wave")
         };
-        types[2] = new SpawnObject(waves, 10);
+        types[1] = new SpawnObject(waves, spawnTimeWave);
     }
 
     void Update()
     {
         foreach(SpawnObject type in types)
         {
-            if (type.timeSinceLastSpawn > Random.Range(0.8f, 1.2f) * type.timeBetweenSpawns)
+            if (type.timeSinceLastSpawn > Random.Range(1 - spawnTimeVariance, 1 + spawnTimeVariance) * type.timeBetweenSpawns)
             {
                 Instantiate(type.objVariants[(Random.Range(0, type.objVariants.Count - 1))], this.transform);
                 type.timeSinceLastSpawn = 0;

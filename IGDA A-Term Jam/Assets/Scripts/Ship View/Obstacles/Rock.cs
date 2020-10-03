@@ -10,7 +10,6 @@ public class Rock : MonoBehaviour
             true - Rock2 - single large rock - sprites from the large folder */
     public bool rockTypeLarge = false;
     private float scaleRange = .4f;
-    private float rockSpeed = .8f;
 
     static Sprite[] smallSprite = new Sprite[4];
     static Sprite[] largeSprite = new Sprite[2];
@@ -25,40 +24,38 @@ public class Rock : MonoBehaviour
         largeSprite[0] = Resources.Load<Sprite>("Sprites/Objects/Rocks/Small/tile_67");
         largeSprite[1] = Resources.Load<Sprite>("Sprites/Objects/Rocks/Small/tile_67");
 
-        InitializeRock();
+        SetSprite();
+        SetRotation();
+        SetScale();
     }
 
     void Update()
     {
-        Vector3 pos = this.transform.position;
-        pos.x += rockSpeed * Time.deltaTime;
-        pos.y -= rockSpeed * Time.deltaTime;
-        this.transform.position = pos;
 
-        if (pos.y < Constants.LOWER_BOUND - 1)
-        {
-            Destroy(this.gameObject);
-        }
     }
 
-    private void InitializeRock()
+    // Sets the rock sprite from all those of appropriate size
+    private void SetSprite()
     {
         sprRenderer = GetComponentInChildren<SpriteRenderer>();
         Sprite[] spriteOptions = rockTypeLarge ? largeSprite : smallSprite;
         sprRenderer.sprite = spriteOptions[(Random.Range(0, spriteOptions.Length - 1))];
+    }
 
-        Vector3 pos = this.transform.position;
-        pos.x = Random.Range(Constants.LEFT_BOUND, Constants.RIGHT_BOUND) - 5;
-        pos.y = Constants.UPPER_BOUND + 2;
-        this.transform.position = pos;
+    // Sets rock rotation to random angle from 0 to 360
+    private void SetRotation()
+    {
+        float rotation = Random.Range(0f, 360f);
+        this.transform.rotation = Quaternion.Euler(0, 0, rotation);
+    }
 
+    // Sets rock rotation to random increase within scaleRange
+    private void SetScale()
+    {
         Vector3 scaleVector = this.transform.localScale;
         float scale = Random.Range(scaleVector.x, scaleVector.x + scaleRange);
         scaleVector.x = scale;
         scaleVector.y = scale;
         this.transform.localScale = scaleVector;
-
-        float rotation = Random.Range(0f, 360f);
-        this.transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 }
