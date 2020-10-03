@@ -5,7 +5,7 @@ using UnityEngine;
 public static class Constants
 {
     // Constants
-    public static int DESPAWN_ZONE = -11;
+    public static int DESPAWN_ZONE = -12;
 
     // Values for Ship View pane
     public static float rockSpd = .8f;

@@ -8,6 +8,6 @@ public class Wave : MonoBehaviour
 
     void Update()
     {
-        if (Utils.DiagonalMovement(this.gameObject, Constants.waveSpd)) Destroy(this.gameObject);
+        if (Utils.DownwardMovement(this.gameObject, Constants.waveSpd)) Destroy(this.gameObject);
     }
 }
