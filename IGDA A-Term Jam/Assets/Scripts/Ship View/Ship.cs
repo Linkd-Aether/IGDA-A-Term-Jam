@@ -14,10 +14,10 @@ public class Ship : MonoBehaviour
     private float sailHeight; //value between 0 (fully lowered) and 1 (fully raised)
     private float waterLevel; //value between 0 (no water) and 1 (sunk)
     private float steeringAmount; //value between -1 and 1 used for player input
-    private float accelerationPower = 0.5f; //Ships accelertaion ability (higher means more rapid acceleration)
+    private float accelerationPower = 0.5f; //Ships acceleration ability (higher means more rapid acceleration)
     private float steeringPower = 1f; //Ships turning ability (higher means capable of sharper turns)
-    private float waveDownwardForceMultiplier = 0.4f; //accelerationPower is multiplied by this constant to give a continuous downward force 
-                                                      //applied by the waves on the ship
+    private float oceanForceMultiplier = 0.4f; //accelerationPower is multiplied by this constant to give a continuous downward force 
+                                                      //applied by the ocean's minor waves on the ship
 
     public List<Sprite> hullModels;
     public List<Sprite> sailModels;
@@ -34,7 +34,7 @@ public class Ship : MonoBehaviour
     }
 
 
-    //Update used for physics calculations as it is independent of frame rate
+    // Update used for physics calculations as it is independent of frame rate
     void FixedUpdate() {
         SetSteeringAmount(-Input.GetAxis("Horizontal")); //Left and right player input
 
@@ -43,7 +43,7 @@ public class Ship : MonoBehaviour
 
         rb.AddRelativeForce(Vector2.up * speed);
 
-        rb.AddForce(new Vector2(0f, -accelerationPower*waveDownwardForceMultiplier)); //Constant force applied by waves
+        rb.AddForce(new Vector2(0f, -accelerationPower*oceanForceMultiplier)); //Constant force applied by waves
 
         rb.AddRelativeForce(-Vector2.right * rb.velocity.magnitude * steeringAmount / 2);
 
