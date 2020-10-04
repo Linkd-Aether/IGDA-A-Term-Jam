@@ -14,6 +14,9 @@ public class CannonView : MonoBehaviour
     public SpriteRenderer cannonSprite;
     public SpriteRenderer ballSprite;
 
+    public AudioSource boom1;
+    public AudioSource boom2;
+
     private static Sprite[] cannonSprites;
     private bool cannonReady;
     private bool cannonLit;
@@ -109,6 +112,7 @@ public class CannonView : MonoBehaviour
                 }
                 else if (animInt == 120 && QTESatisfied)
                 {
+                    PlaySound();
                     fireBall();
                     successParticle.Play();
                 }
@@ -117,6 +121,7 @@ public class CannonView : MonoBehaviour
                     fireButton.SetActive(false);
                     if (QTESatisfied)
                     {
+                        PlaySound();
                         fireBall();
                         successParticle.Play();
                     }
@@ -153,6 +158,13 @@ public class CannonView : MonoBehaviour
         {
             ballSprite.color = new Color(255, 255, 255, 255);
         }
+    }
+
+    private void PlaySound()
+    {
+        print(Random.Range(0, 2) == 1);
+        if (Random.Range(0, 2) == 1) boom1.Play();
+        else boom2.Play();
     }
 
     private void CannonSwitch(int cannonNumber){

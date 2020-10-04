@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MapTrack : MonoBehaviour
 {
     public float goalTime;
     public SpriteRenderer map;
-    public float test;
 
     private float currTime;
     private Sprite[] mapSprites;
@@ -45,11 +45,10 @@ public class MapTrack : MonoBehaviour
         currTime++;
         map.sprite = mapSprites[(int)Mathf.Clamp(Mathf.Floor(currTime / goalTime * 18), 0, 17)];
         if (currTime >= goalTime) End();
-        test = currTime / goalTime;
     }
 
     void End()
     {
-        print("END");
+        SceneManager.LoadScene("Win");
     }
 }
