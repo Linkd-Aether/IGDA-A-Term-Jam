@@ -13,7 +13,7 @@ public static class GlobalValues
     public static ShipCannon currentCannon = ship.cannons[0];
 
     public static float health = 100f; // Health between 0 (dead) and 100 (no damage)
-    public static float waterLevel = 0f; // Water between 0 (no water) and 100 (flooded)
+    public static float waterLevel = 50f; // Water between 0 (no water) and 100 (flooded)
     public static float sailHeight = 0f; // Sail height between 0 (fully lowered) and 1 (fully raised)
     public static float leakRate = 0f; // Rate at which water floods the below decks per second between 0 (no leak) and 10 (heavy leak)
 

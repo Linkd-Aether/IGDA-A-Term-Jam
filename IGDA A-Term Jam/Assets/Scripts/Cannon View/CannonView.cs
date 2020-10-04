@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CannonView : MonoBehaviour
+public class CannonView : View
 {
-    private static KeyCode[] switchKeys = new KeyCode[4] {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4};
     public GameObject cannonSwitchUI;
     private ShipCannon[] cannonsUI;
-    private int activeCannon; 
+    private int activeCannon = 0; 
     private Color greyOut = new Color(128/255f,128/255f,128/255f,1); 
     private Color highlight = new Color(1,1,100/255f,1);
 
@@ -57,11 +56,9 @@ public class CannonView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < switchKeys.Length; i++){
-            if (Input.GetKeyDown(switchKeys[i])) CannonSwitch(i);
-        }
+        if (numberedValues[3]) CannonSwitch(activeCannon+1);
 
-        if (!cannonReady && Input.GetKeyDown(KeyCode.Z)) {
+        if (!cannonReady && numberedValues[0]) {
             cannonReady = true;
             ballButton.SetActive(false);
             lightButton.SetActive(true);
@@ -71,7 +68,7 @@ public class CannonView : MonoBehaviour
 
             ballSprite.color = new Color(255, 255, 255, 0);
 
-            if (!cannonLit && Input.GetKeyDown(KeyCode.X)) {
+            if (!cannonLit && numberedValues[1]) {
                 cannonLit = true;
                 lightButton.SetActive(false);
             }
@@ -94,7 +91,7 @@ public class CannonView : MonoBehaviour
                 {
                     fireButton.SetActive(true);
                     cannonSprite.sprite = cannonSprites[4];
-                    if (Input.GetKeyDown(KeyCode.C)) QTESatisfied = true;
+                    if (numberedValues[2]) QTESatisfied = true;
                 }
                 else if (animInt < 120)
                 {
@@ -102,10 +99,7 @@ public class CannonView : MonoBehaviour
 
                     fireButton.SetActive(true);
 
-                    if (Input.GetKeyDown(KeyCode.C))
-                    {
-                        QTESatisfied = true;
-                    }
+                    if (numberedValues[2]) QTESatisfied = true;
                 }
                 else if (animInt == 120 && QTESatisfied)
                 {
@@ -153,10 +147,13 @@ public class CannonView : MonoBehaviour
         {
             ballSprite.color = new Color(255, 255, 255, 255);
         }
+
+        numberedValues = new bool[4]{false, false, false, false};
     }
 
     private void CannonSwitch(int cannonNumber){
         if (cannonNumber != activeCannon){
+            if (cannonNumber > 3) cannonNumber = 0;
             Recolor(cannonsUI[activeCannon].GetComponent<SpriteRenderer>(), greyOut);
             Recolor(cannonsUI[cannonNumber].GetComponent<SpriteRenderer>(), highlight);
 
