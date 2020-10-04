@@ -5,10 +5,11 @@ using UnityEngine;
 public class RockCluster : MonoBehaviour
 {
     private float rockSpeed = Constants.rockSpd;
+    public float checkRadius;
 
     void Start()
     {
-        SetLocation();
+        if (Constants.randomSetLocation) SetLocation();
     }
 
     void Update()
@@ -20,8 +21,14 @@ public class RockCluster : MonoBehaviour
     private void SetLocation()
     {
         Vector3 pos = this.transform.position;
-        pos.x = Random.Range(-4, 4);
-        pos.y = 7;
+        pos.x = Random.Range(-4f, 4f);
+        pos.y = 8;
         this.transform.position = pos;
+        if (CheckSpace(pos) == false) Destroy(this.gameObject);
+    }
+
+    private bool CheckSpace(Vector2 spawnPos){
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(spawnPos, checkRadius*this.transform.localScale.x);
+        return (collisions.Length == 0);
     }
 }

@@ -33,8 +33,6 @@ public class BailingWater : MonoBehaviour
         {
             BailWater();
         }
-        Debug.Log("floodAmount" + floodAmount);
-        Debug.Log("WaterLevel" + GlobalValues.waterLevel);
     }
 
     private void BailWater() 

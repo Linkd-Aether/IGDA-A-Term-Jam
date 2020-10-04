@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GlobalValues
 {
-    public static Ship ship = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<Ship>();
+    public static PlayerShip ship = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<PlayerShip>();
     public static Sail sail = GameObject.FindGameObjectWithTag("Sail").GetComponent<Sail>();
     public static BailingWater deck = GameObject.FindGameObjectWithTag("BelowDeck").GetComponent<BailingWater>();
 
