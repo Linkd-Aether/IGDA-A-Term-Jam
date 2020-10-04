@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class RandomSpawner : MonoBehaviour
 {
-    public float spawnTimeRock = 3.5f;
-    public float spawnTimeWave = 14f;
+    public float spawnTimeRock = 3f;
+    public float spawnTimeWave = 12f;
+    public float spawnTimeEnemy = 3f; //should be 25f
 
+    private float spawnCheckTime = .5f;
     public float spawnTimeVariance = .5f;
 
     class SpawnObject
@@ -23,7 +25,7 @@ public class RandomSpawner : MonoBehaviour
         }
     }
 
-    static SpawnObject[] types = new SpawnObject[2];
+    static SpawnObject[] types = new SpawnObject[3];
 
     void Start()
     {
@@ -41,9 +43,17 @@ public class RandomSpawner : MonoBehaviour
             Resources.Load<GameObject>("Sprites/Tilesets/Prefabs/Wave")
         };
         types[1] = new SpawnObject(waves, spawnTimeWave);
+
+        List<GameObject> enemies = new List<GameObject>
+        {
+            Resources.Load<GameObject>("Prefabs/Ships/EnemyShip")
+        };
+        types[2] = new SpawnObject(enemies, spawnTimeEnemy);
+
+        InvokeRepeating("SpawnObstacles", 1f, spawnCheckTime);
     }
 
-    void Update()
+    private void SpawnObstacles()
     {
         foreach(SpawnObject type in types)
         {
@@ -51,8 +61,10 @@ public class RandomSpawner : MonoBehaviour
             {
                 Instantiate(type.objVariants[(Random.Range(0, type.objVariants.Count - 1))], this.transform);
                 type.timeSinceLastSpawn = 0;
+                Debug.Log("Spawned" + type.objVariants);//
             }
-            type.timeSinceLastSpawn += Time.deltaTime;
+            type.timeSinceLastSpawn += spawnCheckTime;
+            Debug.Log(type.timeSinceLastSpawn);
         }    
     }
 }

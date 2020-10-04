@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7026690555267147802}
   - component: {fileID: 6404767205726295329}
   m_Layer: 0
-  m_Name: Ship
+  m_Name: PlayerShip
   m_TagString: PlayerShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640963419933475358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9219740723717941915}

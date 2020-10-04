@@ -29,11 +29,6 @@ public class Rock : MonoBehaviour
         SetScale();
     }
 
-    void Update()
-    {
-
-    }
-
     // Sets the rock sprite from all those of appropriate size
     private void SetSprite()
     {
