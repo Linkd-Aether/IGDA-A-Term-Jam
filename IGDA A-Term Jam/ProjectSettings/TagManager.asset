@@ -9,6 +9,8 @@ TagManager:
   - Rock
   - Sail
   - BelowDeck
+  - EnemyShip
+  - CourseMapping
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - 
   - 
   - Wall
-  - 
+  - EnemyShip
   - 
   - 
   - 

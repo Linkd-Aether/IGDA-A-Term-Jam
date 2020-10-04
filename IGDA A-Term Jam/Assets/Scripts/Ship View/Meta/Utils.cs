@@ -8,10 +8,14 @@ public static class Utils
     // returns true if the position of the moved obj is below the specified DESPAWN_ZONE
     public static bool DownwardMovement(GameObject obj, float speed)
     {
-        Vector3 pos = obj.transform.position;
-        pos.y -= speed * Time.deltaTime;
-        obj.transform.position = pos;
+        if(Constants.oceanPhysics){
+            Vector3 pos = obj.transform.position;
+            pos.y -= speed * Time.deltaTime;
+            obj.transform.position = pos;
 
-        return (pos.y < Constants.DESPAWN_ZONE);
+            return (pos.y < Constants.DESPAWN_ZONE);
+        }
+        return false;
+        
     }
 }

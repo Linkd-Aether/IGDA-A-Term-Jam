@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class Rock : MonoBehaviour
 {
     /*  Multiple types of rocks with different sprites/behavior
@@ -21,17 +20,12 @@ public class Rock : MonoBehaviour
         smallSprite[1] = Resources.Load<Sprite>("Sprites/Objects/Rocks/Small/tile_51");
         smallSprite[2] = Resources.Load<Sprite>("Sprites/Objects/Rocks/Small/tile_65");
         smallSprite[3] = Resources.Load<Sprite>("Sprites/Objects/Rocks/Small/tile_67");
-        largeSprite[0] = Resources.Load<Sprite>("Sprites/Objects/Rocks/Small/tile_67");
-        largeSprite[1] = Resources.Load<Sprite>("Sprites/Objects/Rocks/Small/tile_67");
+        largeSprite[0] = Resources.Load<Sprite>("Sprites/Objects/Rocks/Large/tile_50");
+        largeSprite[1] = Resources.Load<Sprite>("Sprites/Objects/Rocks/Large/tile_66");
 
         SetSprite();
         SetRotation();
         SetScale();
-    }
-
-    void Update()
-    {
-
     }
 
     // Sets the rock sprite from all those of appropriate size
