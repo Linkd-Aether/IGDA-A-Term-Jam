@@ -8,10 +8,10 @@ public static class Constants
     public static int DESPAWN_ZONE = -12;
 
     // Testing
-    public static bool spawning = false;
-    public static bool wavePhysics = false;
-    public static bool oceanPhysics = false;
-    public static bool randomSetLocation = false;
+    public static bool spawning = true;
+    public static bool wavePhysics = true;
+    public static bool oceanPhysics = true;
+    public static bool randomSetLocation = true;
 
     // Values for Ship View pane
     public static float rockSpd = .8f;

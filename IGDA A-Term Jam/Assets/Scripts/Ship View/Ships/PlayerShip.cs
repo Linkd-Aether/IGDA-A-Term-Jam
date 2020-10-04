@@ -26,6 +26,16 @@ public class PlayerShip : Ship
         GlobalValues.sail.UpdateSailDisplay();
     }
 
+    new public IEnumerator ShipDestroyed(){
+        GlobalValues.boatDestroyed = true;
+        yield return StartCoroutine(base.ShipDestroyed());
+    }
+
+    new void ShipDeath(){
+        GlobalValues.gameOver = true;
+        // !!!! Player Boat Death
+    }
+
     // Updates the ship speed and sail display based off globally set sail height
     public void UpdateShipSail(){
         sailModel.transform.localScale = new Vector2(1f, 1.1f - GlobalValues.sailHeight);
