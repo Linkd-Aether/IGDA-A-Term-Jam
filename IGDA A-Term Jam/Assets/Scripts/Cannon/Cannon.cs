@@ -78,32 +78,30 @@ public class Cannon : MonoBehaviour
                 }
                 else if (animInt < 96)
                 {
+                    fireButton.SetActive(true);
                     cannonSprite.sprite = cannonSprites[4];
+                    if (Input.GetKeyDown(KeyCode.S)) QTESatisfied = true;
                 }
                 else if (animInt < 120)
                 {
                     cannonSprite.sprite = cannonSprites[5];
-
-                    fireButton.SetActive(true);
-
-                    if (Input.GetKeyDown(KeyCode.S))
-                    {
-                        QTESatisfied = true;
-                    }
-                }
-                else if (animInt == 120 && QTESatisfied)
-                {
-                    fireBall();
-                    successParticle.Play();
+                    if (Input.GetKeyDown(KeyCode.S)) QTESatisfied = true;
                 }
                 else if (animInt == 120)
                 {
-                    failParticle.Play();
-                    cannonSprite.sprite = cannonSprites[8];
+                    fireButton.SetActive(false);
+                    if (QTESatisfied)
+                    {
+                        fireBall();
+                        successParticle.Play();
+                    }
+                    else { 
+                        failParticle.Play();
+                        cannonSprite.sprite = cannonSprites[8];
+                    }
                 }
                 else if (animInt < 144 && QTESatisfied)
                 {
-                    fireButton.SetActive(false);
                     cannonSprite.sprite = cannonSprites[6];
                 }
                 else if (animInt < 168 && QTESatisfied)
