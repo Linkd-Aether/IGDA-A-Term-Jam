@@ -23,6 +23,8 @@ public class Ship : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    public ShipCannon[] cannons;
+
     protected float speed;
     protected float accelerationPower = 0.5f; // Ships acceleration ability (higher means more rapid acceleration)
 
@@ -38,6 +40,7 @@ public class Ship : MonoBehaviour
         hullModel = this.transform.Find("Hull").GetComponents<SpriteRenderer>()[0];
         sailModel = this.transform.Find("Sails").GetComponents<SpriteRenderer>()[0];
         rb = this.GetComponent<Rigidbody2D>();
+        cannons = GetComponentsInChildren<ShipCannon>();
     }
 
     // Update used for physics calculations as it is independent of frame rate
@@ -59,13 +62,49 @@ public class Ship : MonoBehaviour
         } else if (health >= 20) {
             hullModel.sprite = hullModels.variants[1];
             sailModel.sprite = sailModels.variants[3]; // very damaged
-        } else if (health >= 0) {
+        } else if (health > 0) {
             hullModel.sprite = hullModels.variants[2];
             sailModel.sprite = sailModels.variants[3]; // very damaged
         } else {
             hullModel.sprite = hullModels.variants[3];
             sailModel.sprite = sailModels.variants[2]; // destroyed
+            StartCoroutine("ShipDestroyed");
         }
+    }
+    
+    // Called when ship health = 0
+    public IEnumerator ShipDestroyed(){
+        float elapsedTime = 0;
+        float waitTime = 3f;
+        bool collidersRemoved = false;
+        speed = 0;
+        
+        while (elapsedTime < waitTime)
+        {
+            float lerp = Mathf.Lerp(1, 0, (elapsedTime / waitTime));
+            foreach(SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>()) {
+                Color color = sprite.color;
+                color.a = lerp;
+                sprite.color = color;
+            }
+            elapsedTime += Time.deltaTime;
+
+            if (!collidersRemoved && lerp<.7){
+                foreach(Collider2D collider in GetComponentsInChildren<Collider2D>()) {
+                    collider.enabled = false;
+                }
+                collidersRemoved=true;
+            }
+            yield return null;
+        }  
+        
+        ShipDeath();
+        yield return null;
+    }
+
+    // Called on ship death animation complete
+    public void ShipDeath(){
+
     }
 
     void OnTriggerStay2D(Collider2D collider){

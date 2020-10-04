@@ -7,14 +7,14 @@ public class EnemyShip : Ship
     private Vector2 steeringPoint;
 
     private bool openShot = false;
-    private float maxLoadTime = 5f;
     private float timeLoading = 0f;
     private bool cannonLoaded = true;
+    private static float maxLoadTime = 10f;
 
     private float health = 100f; // 100f to 0f
     private float rotationSpeed = .7f;
     private float approachRange = 4f; // Range within player ship enemy has to be before attempting to line up a shot
-    private float fireRange = 2f; // Range within player enemy ship when the enemy will attempt to shoot
+    private float fireRange = 2.5f; // Range within player enemy ship when the enemy will attempt to shoot
 
     new void Start()
     {
@@ -38,10 +38,22 @@ public class EnemyShip : Ship
         if (this.transform.position.y < Constants.DESPAWN_ZONE) Destroy(this);
     }
 
+    public void TakeDamage(float damage){
+        health -= damage;
+        health = Mathf.Clamp(health, 0, 100);
+        UpdateShipDamageModel(health);
+    }
+
     // Updates ship model based on health and stored hull and sail models
     public void UpdateShipDamageModel(float health) {
         base.UpdateShipDamageModel(hullModels, sailModels, health);
     }
+
+    // Called on ship death animation complete
+    new public void ShipDeath(){
+        Destroy(this.gameObject);
+    }
+
 
     // Randomly select ship hull/sail
     private void GenerateShipFeatures()
@@ -138,24 +150,25 @@ public class EnemyShip : Ship
 
     private void CheckFireConditions()
     {
-        if (openShot && cannonLoaded)
-        {
-            // Calculate angle and see if the enemy cannons can fire
-            float angleToPlayerShip = GenerateAngle(this.transform.position, GlobalValues.ship.transform.position);
-            float forwardFacingAngle = this.transform.eulerAngles.z;
-            
-            // We want this value to be about 90 degrees
-            float checkValue = Mathf.Abs(forwardFacingAngle - angleToPlayerShip - 180);
-
-            if (checkValue > 80 & checkValue < 100){
-                // Cannon Fire Function call here
-                cannonLoaded = true;
-            }
-        }
+        if (openShot && cannonLoaded) cannonLoaded = !ShotCannon();
         timeLoading += Time.fixedDeltaTime;
         if (timeLoading >= maxLoadTime){
             timeLoading = 0;
-            cannonLoaded = false;
+            cannonLoaded = true;
         }
+    }
+
+    // return bool true if any of the ship's cannons line up with player and can hit
+    private bool ShotCannon(){
+        foreach(ShipCannon cannon in cannons){
+            RaycastHit2D hit = Physics2D.Raycast(cannon.spawnLocation.position, cannon.transform.right);
+            if (hit != false){
+                if (hit.collider.gameObject.tag == "PlayerShip"){
+                    cannon.SpawnCannonBall();
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

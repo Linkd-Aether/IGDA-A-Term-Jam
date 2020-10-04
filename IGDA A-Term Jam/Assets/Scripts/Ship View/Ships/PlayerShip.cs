@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerShip : Ship
 {
-    // Start is called before the first frame update
     new void Start()
     {
         base.Start();
@@ -25,6 +24,16 @@ public class PlayerShip : Ship
     public void UpdateShipDamageModel(float health) {
         base.UpdateShipDamageModel(hullModels, sailModels, health);
         GlobalValues.sail.UpdateSailDisplay();
+    }
+
+    new public IEnumerator ShipDestroyed(){
+        GlobalValues.boatDestroyed = true;
+        yield return StartCoroutine(base.ShipDestroyed());
+    }
+
+    new void ShipDeath(){
+        GlobalValues.gameOver = true;
+        // !!!! Player Boat Death
     }
 
     // Updates the ship speed and sail display based off globally set sail height

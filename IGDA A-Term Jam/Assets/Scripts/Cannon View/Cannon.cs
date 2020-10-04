@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
+    private static KeyCode[] switchKeys = new KeyCode[4] {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4};
+
     public SpriteRenderer cannonSprite;
     public SpriteRenderer ballSprite;
 
@@ -47,7 +49,11 @@ public class Cannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!cannonReady && Input.GetKeyDown(KeyCode.R)) {
+        for(int i = 0; i < switchKeys.Length; i++){
+            if (Input.GetKeyDown(switchKeys[i])) CannonSwitch(i);
+        }
+
+        if (!cannonReady && Input.GetKeyDown(KeyCode.Z)) {
             cannonReady = true;
             ballButton.SetActive(false);
             lightButton.SetActive(true);
@@ -57,7 +63,7 @@ public class Cannon : MonoBehaviour
 
             ballSprite.color = new Color(255, 255, 255, 0);
 
-            if (!cannonLit && Input.GetKeyDown(KeyCode.A)) {
+            if (!cannonLit && Input.GetKeyDown(KeyCode.X)) {
                 cannonLit = true;
                 lightButton.SetActive(false);
             }
@@ -80,12 +86,23 @@ public class Cannon : MonoBehaviour
                 {
                     fireButton.SetActive(true);
                     cannonSprite.sprite = cannonSprites[4];
-                    if (Input.GetKeyDown(KeyCode.S)) QTESatisfied = true;
+                    if (Input.GetKeyDown(KeyCode.C)) QTESatisfied = true;
                 }
                 else if (animInt < 120)
                 {
                     cannonSprite.sprite = cannonSprites[5];
-                    if (Input.GetKeyDown(KeyCode.S)) QTESatisfied = true;
+
+                    fireButton.SetActive(true);
+
+                    if (Input.GetKeyDown(KeyCode.C))
+                    {
+                        QTESatisfied = true;
+                    }
+                }
+                else if (animInt == 120 && QTESatisfied)
+                {
+                    fireBall();
+                    successParticle.Play();
                 }
                 else if (animInt == 120)
                 {
@@ -129,8 +146,13 @@ public class Cannon : MonoBehaviour
             ballSprite.color = new Color(255, 255, 255, 255);
         }
     }
+
+    private void CannonSwitch(int cannonNumber){
+        GlobalValues.SetActiveCannon(cannonNumber);
+    }
+
     void fireBall()
     {
-
+        GlobalValues.currentCannon.SpawnCannonBall();
     }
 }
