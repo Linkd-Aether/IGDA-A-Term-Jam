@@ -6,17 +6,17 @@ public class BailingWater : MonoBehaviour
 {
     public Transform waterTransform;
 
-    public GameObject bucket;
+    //public GameObject bucket;
     private Animator bucketAnimator;
 
-    private float bailAmount = -15f;
+    private float bailAmount = 15f;
     private float floodAmount; // Amount of water to be progressively added after hitting a wave
     private float floodAmountPerSec = 10f; // Amount of floodAmount to be added each sec
 
     // Start is called before the first frame update
     void Start()
     {
-        bucketAnimator = bucket.GetComponent<Animator>();
+        bucketAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -37,8 +37,8 @@ public class BailingWater : MonoBehaviour
 
     private void BailWater() 
     {
+        bucketAnimator.SetBool("Used", true);
         bucketAnimator.Play(0);
-        GlobalValues.IncrementWaterLevel(bailAmount);
     }
 
     public void UpdateWaterDisplay()
@@ -56,5 +56,21 @@ public class BailingWater : MonoBehaviour
         float floodThisFrame = floodAmountPerSec * Time.deltaTime;
         floodAmount = Mathf.Clamp(floodAmount - floodThisFrame, 0, floodAmount);
         return floodThisFrame;
+    }
+
+    private void LowerWater(){
+        StartCoroutine("DecrementWaterLevel");
+    }
+
+    private IEnumerator DecrementWaterLevel(){
+        float amountBailed = 0;
+        while (bailAmount > amountBailed){
+            Debug.Log("called");
+            float bailThisCall = Mathf.Clamp(bailAmount * Time.deltaTime, 0, bailAmount - amountBailed);
+            GlobalValues.IncrementWaterLevel(-bailThisCall);
+            amountBailed +=  bailThisCall;
+            yield return null;
+        }
+        yield return null;
     }
 }
