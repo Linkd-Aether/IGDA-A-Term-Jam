@@ -9,7 +9,7 @@ public static class GlobalValues
 
     public static PlayerShip ship = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<PlayerShip>();
     public static Sail sail = GameObject.FindGameObjectWithTag("Sail").GetComponent<Sail>();
-    public static BailingWater deck = GameObject.FindGameObjectWithTag("BelowDeck").GetComponent<BailingWater>();
+    public static BailingWater deck = GameObject.FindGameObjectWithTag("Bucket").GetComponent<BailingWater>();
     public static ShipCannon currentCannon = ship.cannons[0];
 
     public static float health = 100f; // Health between 0 (dead) and 100 (no damage)

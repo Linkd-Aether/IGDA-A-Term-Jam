@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannon : MonoBehaviour
+public class CannonView : MonoBehaviour
 {
     private static KeyCode[] switchKeys = new KeyCode[4] {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4};
+    public GameObject cannonSwitchUI;
+    private ShipCannon[] cannonsUI;
+    private int activeCannon; 
+    private Color greyOut = new Color(128/255f,128/255f,128/255f,1); 
+    private Color highlight = new Color(1,1,100/255f,1);
 
     public SpriteRenderer cannonSprite;
     public SpriteRenderer ballSprite;
@@ -44,6 +49,9 @@ public class Cannon : MonoBehaviour
             Resources.Load<Sprite>("Sprites/Objects/Cannon/cannonexplo2"), // Cannon explosion sprite 2
             Resources.Load<Sprite>("Sprites/Objects/Cannon/cannonblank") // Cannon failed explosion
         };
+
+        cannonsUI = cannonSwitchUI.GetComponentsInChildren<ShipCannon>();
+        Recolor(cannonsUI[0].GetComponent<SpriteRenderer>(), highlight);
     }
 
     // Update is called once per frame
@@ -148,11 +156,21 @@ public class Cannon : MonoBehaviour
     }
 
     private void CannonSwitch(int cannonNumber){
-        GlobalValues.SetActiveCannon(cannonNumber);
+        if (cannonNumber != activeCannon){
+            Recolor(cannonsUI[activeCannon].GetComponent<SpriteRenderer>(), greyOut);
+            Recolor(cannonsUI[cannonNumber].GetComponent<SpriteRenderer>(), highlight);
+
+            activeCannon = cannonNumber;
+            GlobalValues.SetActiveCannon(cannonNumber);
+        }
     }
 
     void fireBall()
     {
         GlobalValues.currentCannon.SpawnCannonBall();
+    }
+
+    private void Recolor(SpriteRenderer sprite, Color color){
+        sprite.color = color;
     }
 }

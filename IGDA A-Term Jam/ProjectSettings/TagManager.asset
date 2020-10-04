@@ -8,9 +8,9 @@ TagManager:
   - Wave
   - Rock
   - Sail
-  - BelowDeck
   - EnemyShip
   - CourseMapping
+  - Bucket
   layers:
   - Default
   - TransparentFX
