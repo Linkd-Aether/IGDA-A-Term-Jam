@@ -9,7 +9,7 @@ public class WheelSpin : MonoBehaviour
 
     private float orientation; //0 - 360 direction of ship
     private float steeringAmount; //value between -1 and 1 used for player input
-    private float steeringPower = 1f; //Ships turning ability (higher means capable of sharper turns)
+    private float steeringPower = .6f; //Ships turning ability (higher means capable of sharper turns)
     private float wheelRotation;
     private float shipRotation;
 

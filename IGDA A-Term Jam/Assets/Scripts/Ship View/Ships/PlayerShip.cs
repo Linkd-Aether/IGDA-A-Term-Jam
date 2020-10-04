@@ -15,6 +15,12 @@ public class PlayerShip : Ship
         UpdateShipSail();
     }
 
+    new void FixedUpdate()
+    {
+        base.FixedUpdate();
+        rb.AddRelativeForce(Vector2.up * speed * (1 - GlobalValues.waterLevel / 100));
+    }
+
     // Updates ship model based on health and stored hull and sail models
     public void UpdateShipDamageModel(float health) {
         base.UpdateShipDamageModel(hullModels, sailModels, health);

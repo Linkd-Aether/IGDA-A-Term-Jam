@@ -13,9 +13,15 @@ public class EnemyShip : Ship
 
         GenerateShipFeatures();
         UpdateShipDamageModel(health);
-        SetLocation();
+        //SetLocation();
 
         speed = accelerationPower;
+    }
+
+    new void FixedUpdate()
+    {
+        base.FixedUpdate();
+        rb.AddRelativeForce(transform.right * speed);
     }
 
     // Updates ship model based on health and stored hull and sail models

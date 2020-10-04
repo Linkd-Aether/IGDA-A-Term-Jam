@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 1640963419933475358, guid: 7ca97938a89a9b4469653dadf6c7083e,
         type: 3}
       propertyPath: m_Name
-      value: Ship
+      value: PlayerShip
       objectReference: {fileID: 0}
     - target: {fileID: 5128840936900841093, guid: 7ca97938a89a9b4469653dadf6c7083e,
         type: 3}
@@ -5774,6 +5774,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!4 &911379072 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+    type: 3}
+  m_PrefabInstance: {fileID: 1177808798}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1014470820
 GameObject:
   m_ObjectHideFlags: 0
@@ -6146,6 +6152,75 @@ Transform:
   m_Father: {fileID: 1435474534}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1177808798
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1178738097}
+    m_Modifications:
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.577762
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.81620526
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051342088758338312, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -70.587006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378677412203351836, guid: b06e60c100241344ca511b969a73a683,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyShip
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b06e60c100241344ca511b969a73a683, type: 3}
 --- !u!1 &1178738096
 GameObject:
   m_ObjectHideFlags: 0
@@ -6159,7 +6234,7 @@ GameObject:
   - component: {fileID: 1178738099}
   - component: {fileID: 1178738100}
   m_Layer: 0
-  m_Name: BG
+  m_Name: Ocean
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6175,7 +6250,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 911379072}
   m_Father: {fileID: 2099367650}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6215,8 +6291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883f24da0f7c47a4b9080bfb24df8020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTimeRock: 3.5
-  spawnTimeWave: 14
   spawnTimeVariance: 0.5
 --- !u!1 &1236193064
 GameObject:

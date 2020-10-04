@@ -41,9 +41,7 @@ public class Ship : MonoBehaviour
     }
 
     // Update used for physics calculations as it is independent of frame rate
-    void FixedUpdate() {
-        rb.AddRelativeForce(Vector2.up * speed * (1 - GlobalValues.waterLevel / 100));
-
+    protected void FixedUpdate() {
         rb.AddForce(new Vector2(0f, -accelerationPower*oceanForceMultiplier)); //Constant force applied by waves
     }
 
