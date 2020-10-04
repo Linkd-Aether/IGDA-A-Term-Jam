@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private static PlayerManager manager;
-    private static GameModule[] modules;
+    private static GameModule[] modules = PlayerManager.modules;
 
-    private int playerNumber;
+    private Crew crew;
     int moduleNumber;
     // 0 = steering
     // 1 = cannon
@@ -20,10 +20,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
-        playerNumber = manager.AddPlayer();
-        modules = PlayerManager.modules;
         moduleNumber = RightAvailableModule(moduleNumber);
         modules[moduleNumber].playerControlled = true;
+        crew = manager.AddPlayer(moduleNumber);
     }
 
     private int RightAvailableModule(int moduleNumber){
@@ -78,6 +77,7 @@ public class PlayerController : MonoBehaviour
             modules[moduleNumber].script.HandleValue(0);
             modules[newModule].playerControlled = true;
             moduleNumber = newModule;
+            crew.SetPosition(moduleNumber);
         }
 
     }
