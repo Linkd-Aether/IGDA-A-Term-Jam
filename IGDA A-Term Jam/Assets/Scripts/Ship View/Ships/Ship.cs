@@ -26,7 +26,7 @@ public class Ship : MonoBehaviour
     protected float speed;
     protected float accelerationPower = 0.5f; // Ships acceleration ability (higher means more rapid acceleration)
 
-    protected float oceanForceMultiplier = 0.4f; //accelerationPower is multiplied by this constant to give a continuous downward force 
+    protected float oceanForceMultiplier = 0.35f; //accelerationPower is multiplied by this constant to give a continuous downward force 
                                                       //applied by the ocean's minor waves on the ship
     protected float waveForceMultiplier = 0.5f; //dictates force of larger waves pushing ship down
 
@@ -42,7 +42,7 @@ public class Ship : MonoBehaviour
 
     // Update used for physics calculations as it is independent of frame rate
     protected void FixedUpdate() {
-        rb.AddForce(new Vector2(0f, -accelerationPower*oceanForceMultiplier)); //Constant force applied by waves
+        if (Constants.oceanPhysics) rb.AddForce(new Vector2(0f, -accelerationPower*oceanForceMultiplier)); //Constant force applied by waves
     }
 
     // Updates ship model based on health and stored hull and sail models
@@ -69,7 +69,7 @@ public class Ship : MonoBehaviour
     }
 
     void OnTriggerStay2D(Collider2D collider){
-        if (collider.gameObject.tag == "Wave")
+        if ((collider.gameObject.tag == "Wave") && (Constants.wavePhysics))
         {
             // Hit a large wave, apply a large force downward
             rb.AddRelativeForce(Vector2.down * waveForceMultiplier);

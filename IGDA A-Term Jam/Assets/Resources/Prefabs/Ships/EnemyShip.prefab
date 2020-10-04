@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4689592880822936004}
   - component: {fileID: 6627757678432465600}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2851587778065124314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4051342088758338312}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8442731213319627929}
   - component: {fileID: 8450977534805851658}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2853407416885455643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4051342088758338312}
@@ -174,9 +174,9 @@ GameObject:
   - component: {fileID: -6140395171683214978}
   - component: {fileID: 2294989060398219292}
   - component: {fileID: 2952450249409480102}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyShip
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,6 +246,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.37, y: 1.05}
   m_Direction: 0

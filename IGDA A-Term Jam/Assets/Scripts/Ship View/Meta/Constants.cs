@@ -7,6 +7,12 @@ public static class Constants
     // Constants
     public static int DESPAWN_ZONE = -12;
 
+    // Testing
+    public static bool spawning = true;
+    public static bool wavePhysics = true;
+    public static bool oceanPhysics = true;
+    public static bool randomSetLocation = true;
+
     // Values for Ship View pane
     public static float rockSpd = .8f;
     public static float rockDmgMultiplier = 10f;
@@ -19,5 +25,5 @@ public static class Constants
     public static float waveSpawnTime = 9f;
     public static float waveFloodMultiplier = 20f;
 
-    public static float enemySpawnTime = 100f;//should be 25
+    public static float enemySpawnTime = 25f;
 }

@@ -30,7 +30,8 @@ public class RandomSpawner : MonoBehaviour
             Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster1"),
             Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster2"),
             Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster3"),
-            Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster4")
+            Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster4"),
+            Resources.Load<GameObject>("Prefabs/Rocks/Cluster/RockCluster5")
         };
         types[0] = new SpawnObject(rocks, Constants.rockSpawnTime);
 
@@ -46,7 +47,7 @@ public class RandomSpawner : MonoBehaviour
         };
         types[2] = new SpawnObject(enemies, Constants.enemySpawnTime);
 
-        InvokeRepeating("SpawnObstacles", 1f, spawnCheckInterval);
+        if(Constants.spawning)InvokeRepeating("SpawnObstacles", 0f, spawnCheckInterval);
     }
 
     private void SpawnObstacles()
@@ -57,10 +58,8 @@ public class RandomSpawner : MonoBehaviour
             {
                 Instantiate(type.objVariants[(Random.Range(0, type.objVariants.Count - 1))], this.transform);
                 type.timeSinceLastSpawn = 0;
-                Debug.Log("Spawned" + type.objVariants);//
             }
             type.timeSinceLastSpawn += spawnCheckInterval;
-            Debug.Log(type.timeSinceLastSpawn);
         }    
     }
 }

@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4133765061631188630}
   - component: {fileID: 2401858573436570560}
-  - component: {fileID: 3789893746385461765}
+  - component: {fileID: 205356356045071288}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Rock
@@ -127,7 +127,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &3789893746385461765
+--- !u!58 &205356356045071288
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,10 +136,10 @@ CircleCollider2D:
   m_GameObject: {fileID: 4103727983956304158}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 973ac0ff5f6bef545b71719dfd5f1334, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.22
