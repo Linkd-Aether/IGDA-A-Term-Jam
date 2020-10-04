@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class Sail : MonoBehaviour
+public class Sail : View
 {
     [SerializeField] public float sailHeightIncrement = 0.01f;
     public SpriteRenderer sailSprite;
@@ -13,8 +13,6 @@ public class Sail : MonoBehaviour
     private int soundTimer;
 
     private void Update() {
-        float input = Input.GetAxisRaw("Vertical");
-
         if (input != 0){
             GlobalValues.IncrementSailHeight(input * sailHeightIncrement);
         }
@@ -33,5 +31,5 @@ public class Sail : MonoBehaviour
     public void UpdateSailDisplay() {
         sailTransform.localScale = new Vector2(9f, 9*(1.1f - GlobalValues.sailHeight));
         sailSprite.sprite = GlobalValues.ship.GetCurrentSailSprite();
-    }    
+    }
 }

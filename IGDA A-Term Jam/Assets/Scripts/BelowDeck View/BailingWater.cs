@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BailingWater : MonoBehaviour
+public class BailingWater : View
 {
     public Transform waterTransform;
 
@@ -30,10 +30,13 @@ public class BailingWater : MonoBehaviour
         }
 
         GlobalValues.IncrementWaterLevel(floodThisFrame);
-        if (Input.GetAxis("Fire1") == 1 && bucketAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 
+
+        if (boolInput && bucketAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 
             && !bucketAnimator.IsInTransition(0) && GlobalValues.waterLevel > 5f)
         {
             BailWater();
+        } else {
+            boolInput = false;
         }
     }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WheelSpin : MonoBehaviour
+public class WheelSpin : View
 {
     private Rigidbody2D rb;
     private Rigidbody2D rbShip;
@@ -32,7 +32,7 @@ public class WheelSpin : MonoBehaviour
     //Update used for physics calculations as it is independent of frame rate
     void FixedUpdate()
     {
-        SetSteeringAmount(-Input.GetAxis("Horizontal")); // Left and right player input
+        SetSteeringAmount(input); // Left and right player input
         float steeringForce = steeringAmount * steeringPower;
 
         orientation = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
