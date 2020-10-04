@@ -13,6 +13,9 @@ public class CannonView : View
     public SpriteRenderer cannonSprite;
     public SpriteRenderer ballSprite;
 
+    public AudioSource boom1;
+    public AudioSource boom2;
+
     private static Sprite[] cannonSprites;
     private bool cannonReady;
     private bool cannonLit;
@@ -103,6 +106,7 @@ public class CannonView : View
                 }
                 else if (animInt == 120 && QTESatisfied)
                 {
+                    PlaySound();
                     fireBall();
                     successParticle.Play();
                 }
@@ -111,6 +115,7 @@ public class CannonView : View
                     fireButton.SetActive(false);
                     if (QTESatisfied)
                     {
+                        PlaySound();
                         fireBall();
                         successParticle.Play();
                     }
@@ -149,6 +154,13 @@ public class CannonView : View
         }
 
         numberedValues = new bool[4]{false, false, false, false};
+    }
+
+    private void PlaySound()
+    {
+        print(Random.Range(0, 2) == 1);
+        if (Random.Range(0, 2) == 1) boom1.Play();
+        else boom2.Play();
     }
 
     private void CannonSwitch(int cannonNumber){

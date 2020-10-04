@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerShip : Ship
 {
@@ -29,11 +30,11 @@ public class PlayerShip : Ship
     new public IEnumerator ShipDestroyed(){
         GlobalValues.boatDestroyed = true;
         yield return StartCoroutine(base.ShipDestroyed());
+        SceneManager.LoadScene("Die");
     }
 
     new void ShipDeath(){
         GlobalValues.gameOver = true;
-        // !!!! Player Boat Death
     }
 
     // Updates the ship speed and sail display based off globally set sail height
@@ -55,6 +56,10 @@ public class PlayerShip : Ship
 
             // play splash SE
             //!!!
+        }
+        if (collider.gameObject.tag == "Death")
+        {
+            GlobalValues.SetHealth(0);
         }
     }
 

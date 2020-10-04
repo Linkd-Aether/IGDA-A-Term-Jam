@@ -8,11 +8,24 @@ public class Sail : View
     [SerializeField] public float sailHeightIncrement = 0.01f;
     public SpriteRenderer sailSprite;
     public Transform sailTransform;
+    public AudioSource sound;
+
+    private int soundTimer;
 
     private void Update() {
         if (input != 0){
             GlobalValues.IncrementSailHeight(input * sailHeightIncrement);
         }
+
+        if (soundTimer == 0 && Mathf.Abs(input) > .75)
+        {
+            soundTimer++;
+            sound.Play();
+        }
+
+        if (soundTimer > 0) soundTimer++;
+        if (soundTimer >= 60) soundTimer = 0;
+
     }
 
     public void UpdateSailDisplay() {

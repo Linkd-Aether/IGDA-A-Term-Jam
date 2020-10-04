@@ -12,6 +12,7 @@ TagManager:
   - CourseMapping
   - Bucket
   - PlayerManager
+  - Death
   layers:
   - Default
   - TransparentFX

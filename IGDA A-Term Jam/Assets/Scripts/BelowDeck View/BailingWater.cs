@@ -6,6 +6,8 @@ public class BailingWater : View
 {
     public Transform waterTransform;
 
+    public AudioSource sound;
+
     //public GameObject bucket;
     private Animator bucketAnimator;
 
@@ -42,6 +44,9 @@ public class BailingWater : View
     {
         bucketAnimator.SetBool("Used", true);
         bucketAnimator.Play(0);
+
+        sound.Play();
+
     }
 
     public void UpdateWaterDisplay()
