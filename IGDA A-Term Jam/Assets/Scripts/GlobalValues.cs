@@ -7,6 +7,7 @@ public static class GlobalValues
     public static PlayerShip ship = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<PlayerShip>();
     public static Sail sail = GameObject.FindGameObjectWithTag("Sail").GetComponent<Sail>();
     public static BailingWater deck = GameObject.FindGameObjectWithTag("BelowDeck").GetComponent<BailingWater>();
+    public static ShipCannon currentCannon = ship.cannons[0];
 
     public static float health = 100f; // Health between 0 (dead) and 100 (no damage)
     public static float waterLevel = 0f; // Water between 0 (no water) and 100 (flooded)
@@ -57,4 +58,8 @@ public static class GlobalValues
         leakRate = Mathf.Clamp(leakRate, 0, 10f);
     }
 
+    // Sets the cannon number
+    public static void SetActiveCannon(int cannonNumber){
+        currentCannon = ship.cannons[cannonNumber];
+    }
 }

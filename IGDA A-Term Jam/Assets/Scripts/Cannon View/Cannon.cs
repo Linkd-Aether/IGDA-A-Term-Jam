@@ -133,6 +133,6 @@ public class Cannon : MonoBehaviour
     }
     void fireBall()
     {
-
+        GlobalValues.currentCannon.SpawnCannonBall();
     }
 }

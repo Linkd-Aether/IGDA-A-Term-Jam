@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerShip : Ship
 {
-    // Start is called before the first frame update
     new void Start()
     {
         base.Start();

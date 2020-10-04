@@ -23,6 +23,8 @@ public class Ship : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    public ShipCannon[] cannons;
+
     protected float speed;
     protected float accelerationPower = 0.5f; // Ships acceleration ability (higher means more rapid acceleration)
 
@@ -38,6 +40,7 @@ public class Ship : MonoBehaviour
         hullModel = this.transform.Find("Hull").GetComponents<SpriteRenderer>()[0];
         sailModel = this.transform.Find("Sails").GetComponents<SpriteRenderer>()[0];
         rb = this.GetComponent<Rigidbody2D>();
+        cannons = GetComponentsInChildren<ShipCannon>();
     }
 
     // Update used for physics calculations as it is independent of frame rate

@@ -38,6 +38,13 @@ public class EnemyShip : Ship
         if (this.transform.position.y < Constants.DESPAWN_ZONE) Destroy(this);
     }
 
+    public void TakeDamage(float damage){
+        Debug.Log("Took Damage =" + damage); // !!!
+        health -= damage;
+        health = Mathf.Clamp(health, 0, 100);
+        UpdateShipDamageModel(health);
+    }
+
     // Updates ship model based on health and stored hull and sail models
     public void UpdateShipDamageModel(float health) {
         base.UpdateShipDamageModel(hullModels, sailModels, health);
