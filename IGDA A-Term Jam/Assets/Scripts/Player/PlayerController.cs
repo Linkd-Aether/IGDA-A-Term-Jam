@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private static GameModule[] modules = PlayerManager.modules;
 
     private Crew crew;
-    int moduleNumber;
+    int moduleNumber = 0;
     // 0 = steering
     // 1 = cannon
     // 2 = sail
@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        playerInput = GetComponent<PlayerInput>();
+        // playerInput.user; user of this player instance
+        print(playerInput.user.pairedDevices[0]);
+
         manager = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         moduleNumber = RightAvailableModule(moduleNumber);
         modules[moduleNumber].playerControlled = true;
@@ -83,15 +87,8 @@ public class PlayerController : MonoBehaviour
     }
     
     // Left Trigger or Click
-    private void OnClickL(InputValue value){
-        if (modules[moduleNumber].inputs.Contains("ClickL")){
-            // pass click value to bucket script
-            modules[moduleNumber].script.HandleValue(true);
-        }
-    }
-
-    private void OnTriggerL(InputValue value){
-        if (modules[moduleNumber].inputs.Contains("TriggerL")){
+    private void OnButtonL(InputValue value){
+        if (modules[moduleNumber].inputs.Contains("ButtonL")){
             // pass click value to bucket script
             modules[moduleNumber].script.HandleValue(true);
         }

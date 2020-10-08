@@ -22,12 +22,12 @@ public class PlayerManager : MonoBehaviour
     private static GameObject crewPrefab;
 
     public static GameModule[] modules = new GameModule[4];
-    public static int numberPlayers = 0;
-
     public WheelSpin wheelView;
     public BailingWater belowDeckView;
     public Sail sailView;
     public CannonView cannonView;
+
+    public static int numberPlayers = 0;
     
     void Start()
     {
@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour
         modules[0] = new GameModule(new List<string> {"MoveL"}, wheelView); // 0 = steering
         modules[1] = new GameModule(new List<string> {"Selection", "Button1", "Button2", "Button3"}, cannonView); // 1 = cannon
         modules[2] = new GameModule(new List<string> {"MoveR"}, sailView); // 2 = sail
-        modules[3] = new GameModule(new List<string> {"ClickL", "TriggerL"}, belowDeckView); // 3 = bucket
+        modules[3] = new GameModule(new List<string> {"ButtonL"}, belowDeckView); // 3 = bucket
     }
 
     public Crew AddPlayer(int moduleNumber){
@@ -52,6 +52,6 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void OnPlayerJoined(PlayerInput playerInput) { 
-        //
+
     }
 }
