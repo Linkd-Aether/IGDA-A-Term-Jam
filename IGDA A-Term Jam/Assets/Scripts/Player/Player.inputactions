@@ -19,7 +19,7 @@
                     "id": "a2b469b3-a035-48b3-82a3-433025e65668",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "Shifting",
@@ -160,7 +160,7 @@
                     "name": "Arrows",
                     "id": "b3b55b51-8738-4d1d-aa59-cfcf1e8b8e58",
                     "path": "2DVector",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press(pressPoint=2,behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "MoveR",
