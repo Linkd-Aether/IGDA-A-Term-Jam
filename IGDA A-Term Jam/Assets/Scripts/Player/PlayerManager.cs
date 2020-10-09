@@ -5,12 +5,11 @@ using UnityEngine.InputSystem;
 
 public class GameModule
 {
-    public bool playerControlled;
+    public int? player = null;
     public List<string> inputs;
     public View script;
 
     public GameModule(List<string> actions, View scr){
-        playerControlled = false;
         inputs = actions;
         script = scr;
     }
@@ -27,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     public Sail sailView;
     public CannonView cannonView;
 
+    private List<PlayerController> players = new List<PlayerController>();
     public static int numberPlayers = 0;
     
     void Start()
@@ -42,16 +42,49 @@ public class PlayerManager : MonoBehaviour
         modules[3] = new GameModule(new List<string> {"ButtonL"}, belowDeckView); // 3 = bucket
     }
 
-    public Crew AddPlayer(int moduleNumber){
-        Crew crew = Instantiate<GameObject>(crewPrefab).GetComponent<Crew>();
-        crew.SetSprite(crewSprites[numberPlayers]);
-        crew.SetPosition(moduleNumber);
-        crew.SetColor(PlayerConstants.COLORS[numberPlayers]);
+    public void OnPlayerJoined(PlayerInput playerInput) { 
+        PlayerController newPlayer = playerInput.gameObject.GetComponent<PlayerController>();
+        newPlayer.playerNumber = numberPlayers;
         numberPlayers++;
-        return crew;
+        SetPlayerModule(newPlayer, NextOpenModule(0), true);
+        AddCrew(newPlayer);
+        players.Add(newPlayer);
     }
 
-    public void OnPlayerJoined(PlayerInput playerInput) { 
+    // Changes the moduleNumber of the player and makes the corresponding changes to the modules variable
+    static public void SetPlayerModule(PlayerController player, int moduleNumber, bool spawning = false){
+        if (!spawning) modules[player.moduleNumber].player = null;
+        modules[moduleNumber].player = player.playerNumber;
+        player.moduleNumber = moduleNumber;
+    }
 
+    static public int NextOpenModule(int currentModuleNumber){
+        int modulesLength = modules.Length;
+
+        for(int i = 0; i < modulesLength; i++){
+            int index = currentModuleNumber + i;
+            if (index >= modulesLength) index -= modulesLength;
+            if (modules[index].player == null) return index; 
+        }
+        return currentModuleNumber;
+    }
+
+    static public int LastOpenModule(int currentModuleNumber){
+        int modulesLength = modules.Length;
+
+        for(int i = modulesLength; i > 0; i--){
+            int index = currentModuleNumber + i;
+            if (index >= modulesLength) index -= modulesLength;
+            if (modules[index].player == null) return index; 
+        }
+        return currentModuleNumber;
+    }
+
+    static private void AddCrew(PlayerController player){
+        Crew crew = Instantiate<GameObject>(crewPrefab).GetComponent<Crew>();
+        crew.SetSprite(crewSprites[player.playerNumber]);
+        crew.SetColor(PlayerConstants.COLORS[player.playerNumber]);
+        crew.SetPosition(player.moduleNumber);
+        player.crew = crew;
     }
 }
