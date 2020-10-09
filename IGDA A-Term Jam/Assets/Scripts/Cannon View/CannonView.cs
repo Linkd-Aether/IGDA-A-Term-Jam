@@ -158,7 +158,6 @@ public class CannonView : View
 
     private void PlaySound()
     {
-        print(Random.Range(0, 2) == 1);
         if (Random.Range(0, 2) == 1) boom1.Play();
         else boom2.Play();
     }

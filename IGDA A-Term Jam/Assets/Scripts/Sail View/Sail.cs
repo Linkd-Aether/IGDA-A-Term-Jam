@@ -11,6 +11,7 @@ public class Sail : View
     public AudioSource sound;
 
     private int soundTimer;
+    private bool stopSound;
 
     private void Update() {
         if (input != 0){
@@ -20,6 +21,7 @@ public class Sail : View
         if (soundTimer == 0 && Mathf.Abs(input) > .75)
         {
             soundTimer++;
+            sound.time = .12f;
             sound.Play();
         }
 

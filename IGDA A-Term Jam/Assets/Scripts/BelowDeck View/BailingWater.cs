@@ -73,7 +73,6 @@ public class BailingWater : View
     private IEnumerator DecrementWaterLevel(){
         float amountBailed = 0;
         while (bailAmount > amountBailed){
-            Debug.Log("called");
             float bailThisCall = Mathf.Clamp(bailAmount * Time.deltaTime, 0, bailAmount - amountBailed);
             GlobalValues.IncrementWaterLevel(-bailThisCall);
             amountBailed +=  bailThisCall;

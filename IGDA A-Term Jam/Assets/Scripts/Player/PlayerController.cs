@@ -5,46 +5,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private static PlayerManager manager;
-    private static GameModule[] modules;
+    private static GameModule[] modules = PlayerManager.modules;
 
-    private int playerNumber;
-    int moduleNumber;
+    public Crew crew;
+    public int moduleNumber;
     // 0 = steering
     // 1 = cannon
     // 2 = sail
     // 3 = bucket
 
-    private PlayerInput playerInput;
-
-    void Start()
-    {
-        manager = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
-        playerNumber = manager.AddPlayer();
-        modules = PlayerManager.modules;
-        moduleNumber = RightAvailableModule(moduleNumber);
-        modules[moduleNumber].playerControlled = true;
-    }
-
-    private int RightAvailableModule(int moduleNumber){
-        int moduleCount = modules.Length;
-        for(int i = 0; i < moduleCount; i++){
-            int index = i + moduleNumber;
-            if (index >= moduleCount) index -= moduleCount;
-            if (!modules[index].playerControlled) return index;
-        }
-        return moduleNumber; // no open modules
-    }
-
-    private int LeftAvailableModule(int moduleNumber){
-        int moduleCount = modules.Length;
-        for(int i = moduleCount; i > 0; i--){
-            int index = i + moduleNumber;
-            if (index >= moduleCount) index -= moduleCount;
-            if (!modules[index].playerControlled) return index;
-        }
-        return moduleNumber; // no open modules
-    }
+    public int playerNumber;
 
     // Left Joystick or WASD (2 Vector)
     private void OnMoveL(InputValue value){
@@ -68,30 +38,21 @@ public class PlayerController : MonoBehaviour
     private void OnShifting(InputValue value){
         int val = (int) Mathf.Sign(value.Get<float>());
         int newModule = moduleNumber;
-        if (val == -1) newModule = LeftAvailableModule(moduleNumber);
-        else if (val == 1) newModule = RightAvailableModule(moduleNumber);
+        if (val == -1) newModule = PlayerManager.LastOpenModule(moduleNumber);
+        else if (val == 1) newModule = PlayerManager.NextOpenModule(moduleNumber);
 
         if (moduleNumber != newModule) {
-            modules[moduleNumber].playerControlled = false;
             modules[moduleNumber].script.HandleNumberedValue(0);
             modules[moduleNumber].script.HandleValue(false);
             modules[moduleNumber].script.HandleValue(0);
-            modules[newModule].playerControlled = true;
-            moduleNumber = newModule;
+            PlayerManager.SetPlayerModule(this, newModule);
+            crew.SetPosition(moduleNumber);
         }
-
     }
     
     // Left Trigger or Click
-    private void OnClickL(InputValue value){
-        if (modules[moduleNumber].inputs.Contains("ClickL")){
-            // pass click value to bucket script
-            modules[moduleNumber].script.HandleValue(true);
-        }
-    }
-
-    private void OnTriggerL(InputValue value){
-        if (modules[moduleNumber].inputs.Contains("TriggerL")){
+    private void OnButtonL(InputValue value){
+        if (modules[moduleNumber].inputs.Contains("ButtonL")){
             // pass click value to bucket script
             modules[moduleNumber].script.HandleValue(true);
         }
