@@ -12,6 +12,9 @@ public class PlayerShip : Ship
     {
         base.Start();
         
+        GlobalValues.ship = this;
+        GlobalValues.currentCannon = this.cannons[0];
+
         hullModels = hullModelVariants[0];
         sailModels = sailModelVariants[1];
 
@@ -71,7 +74,6 @@ public class PlayerShip : Ship
         if (collider.gameObject.tag == "SoftWall")
         {
             rb.AddForce(Vector2.down * (rb.velocity.magnitude + softWallForceMultiplier));
-            print(rb.velocity.magnitude);
         }
     }
 

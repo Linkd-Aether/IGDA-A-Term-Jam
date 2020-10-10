@@ -426,6 +426,176 @@ public class @Player : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""EndScreen"",
+            ""id"": ""fd2eb26a-0134-46b9-8518-ff8c263dcb27"",
+            ""actions"": [
+                {
+                    ""name"": ""ButtonPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""f382d94e-787f-4342-bf8c-8e2eedba65b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""0b3f904a-38b0-428a-ba29-5a6e3bc26046"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shifting"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""1635fa47-49ee-4784-a634-468d54ba359c"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""Shifting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""71d76703-0482-4d3a-b5cd-8e1e54b525f6"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""Shifting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db530c40-dbc0-410d-a00e-ebc5807e1f2f"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c7186d2-c56d-4a47-a8a8-44d94e06d959"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ab7aead-6b21-4ee6-91f1-3c957c508c83"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b338bc1a-202c-4877-b434-2058b5fb6932"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e184cfd-12d1-4984-954b-5480e6605cdc"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a88f343-fd78-4fb4-a6bc-30fab51965f5"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""faf5031c-066b-41de-880c-352a71fb5fc6"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0afaa689-43df-4f71-9819-037f3c7e2f46"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef8a018f-a568-4861-96d5-ae86b67da0bc"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a1a0b2f-a3a8-4cbb-85b7-64e999a347f2"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebdf0856-23ce-4bab-b660-f9416c8f4d46"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""ButtonPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -468,6 +638,9 @@ public class @Player : IInputActionCollection, IDisposable
         m_GameWindows_Button1 = m_GameWindows.FindAction("Button1", throwIfNotFound: true);
         m_GameWindows_Button2 = m_GameWindows.FindAction("Button2", throwIfNotFound: true);
         m_GameWindows_Button3 = m_GameWindows.FindAction("Button3", throwIfNotFound: true);
+        // EndScreen
+        m_EndScreen = asset.FindActionMap("EndScreen", throwIfNotFound: true);
+        m_EndScreen_ButtonPress = m_EndScreen.FindAction("ButtonPress", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -602,6 +775,39 @@ public class @Player : IInputActionCollection, IDisposable
         }
     }
     public GameWindowsActions @GameWindows => new GameWindowsActions(this);
+
+    // EndScreen
+    private readonly InputActionMap m_EndScreen;
+    private IEndScreenActions m_EndScreenActionsCallbackInterface;
+    private readonly InputAction m_EndScreen_ButtonPress;
+    public struct EndScreenActions
+    {
+        private @Player m_Wrapper;
+        public EndScreenActions(@Player wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ButtonPress => m_Wrapper.m_EndScreen_ButtonPress;
+        public InputActionMap Get() { return m_Wrapper.m_EndScreen; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EndScreenActions set) { return set.Get(); }
+        public void SetCallbacks(IEndScreenActions instance)
+        {
+            if (m_Wrapper.m_EndScreenActionsCallbackInterface != null)
+            {
+                @ButtonPress.started -= m_Wrapper.m_EndScreenActionsCallbackInterface.OnButtonPress;
+                @ButtonPress.performed -= m_Wrapper.m_EndScreenActionsCallbackInterface.OnButtonPress;
+                @ButtonPress.canceled -= m_Wrapper.m_EndScreenActionsCallbackInterface.OnButtonPress;
+            }
+            m_Wrapper.m_EndScreenActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ButtonPress.started += instance.OnButtonPress;
+                @ButtonPress.performed += instance.OnButtonPress;
+                @ButtonPress.canceled += instance.OnButtonPress;
+            }
+        }
+    }
+    public EndScreenActions @EndScreen => new EndScreenActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -630,5 +836,9 @@ public class @Player : IInputActionCollection, IDisposable
         void OnButton1(InputAction.CallbackContext context);
         void OnButton2(InputAction.CallbackContext context);
         void OnButton3(InputAction.CallbackContext context);
+    }
+    public interface IEndScreenActions
+    {
+        void OnButtonPress(InputAction.CallbackContext context);
     }
 }

@@ -13,6 +13,10 @@ public class Sail : View
     private int soundTimer;
     private bool stopSound;
 
+    private void Start(){
+        GlobalValues.sail = this;
+    }
+
     private void Update() {
         if (input != 0){
             GlobalValues.IncrementSailHeight(input * sailHeightIncrement);
