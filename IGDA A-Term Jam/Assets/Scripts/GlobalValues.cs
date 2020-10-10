@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class GlobalValues
 {
     public static bool boatDestroyed = false;
     public static bool gameOver = false;
 
-    public static PlayerShip ship = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<PlayerShip>();
-    public static Sail sail = GameObject.FindGameObjectWithTag("Sail").GetComponent<Sail>();
-    public static BailingWater deck = GameObject.FindGameObjectWithTag("Bucket").GetComponent<BailingWater>();
-    public static ShipCannon currentCannon = ship.cannons[0];
+    public static PlayerShip ship;
+    public static Sail sail;
+    public static BailingWater deck;
+    public static ShipCannon currentCannon;
 
     public static float health = 100f; // Health between 0 (dead) and 100 (no damage)
     public static float waterLevel = 0f; // Water between 0 (no water) and 100 (flooded)
@@ -64,5 +65,17 @@ public static class GlobalValues
     // Sets the cannon number
     public static void SetActiveCannon(int cannonNumber){
         currentCannon = ship.cannons[cannonNumber];
+    }
+
+    public static void GameReset(){
+        gameOver = false;
+        boatDestroyed = false;
+
+        SceneManager.LoadScene("Game");
+
+        health = 100f;
+        leakRate = 0f;
+        waterLevel = 0f;
+        sailHeight = 0f;
     }
 }

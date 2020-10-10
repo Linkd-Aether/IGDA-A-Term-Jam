@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class PlayerShip : Ship
 {
+    private bool moving = true;
+    private float softWallForceMultiplier = .7f;
+
     new void Start()
     {
         base.Start();
         
+        GlobalValues.ship = this;
+        GlobalValues.currentCannon = this.cannons[0];
+
         hullModels = hullModelVariants[0];
         sailModels = sailModelVariants[1];
 
@@ -18,7 +24,7 @@ public class PlayerShip : Ship
     new void FixedUpdate()
     {
         base.FixedUpdate();
-        rb.AddRelativeForce(Vector2.up * speed * (1 - GlobalValues.waterLevel / 100));
+        if (moving) rb.AddRelativeForce(Vector2.up * speed * (1 - GlobalValues.waterLevel / 100));
     }
 
     // Updates ship model based on health and stored hull and sail models
@@ -57,9 +63,23 @@ public class PlayerShip : Ship
             // play splash SE
             //!!!
         }
-        if (collider.gameObject.tag == "Death")
+        else if (collider.gameObject.tag == "Death")
         {
             GlobalValues.SetHealth(0);
+        } 
+        else if (collider.gameObject.tag == "SoftWall") moving = false;
+    }
+
+    private void OnTriggerStay2D(Collider2D collider){
+        if (collider.gameObject.tag == "SoftWall")
+        {
+            rb.AddForce(Vector2.down * (rb.velocity.magnitude + softWallForceMultiplier));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider){
+        if (collider.gameObject.tag == "SoftWall"){
+            moving=true;
         }
     }
 

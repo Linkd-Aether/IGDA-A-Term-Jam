@@ -13,6 +13,7 @@ TagManager:
   - Bucket
   - PlayerManager
   - Death
+  - SoftWall
   layers:
   - Default
   - TransparentFX

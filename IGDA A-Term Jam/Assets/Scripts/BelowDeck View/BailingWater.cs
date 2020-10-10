@@ -19,6 +19,8 @@ public class BailingWater : View
     void Start()
     {
         bucketAnimator = GetComponent<Animator>();
+
+        GlobalValues.deck = this;
     }
 
     void Update()
