@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
     public CannonView cannonView;
 
     private List<PlayerController> players = new List<PlayerController>();
-    public static int numberPlayers = 0;
+    public int numberPlayers = 0;
     
     void Start()
     {
